@@ -1,0 +1,23 @@
+{
+  "name": "bus-ticket-booking-web",
+  "version": "1.0.0",
+  "description": "He thong Dat ve Xe khach Lien tinh - Do an Web Application Development (SSR EJS + Bootstrap 5 + Tailwind CSS + PostgreSQL)",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "nodemailer": "^6.9.14",
+    "pg": "^8.12.0",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}
