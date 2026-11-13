@@ -1,2 +1,2 @@
-// [TV5] Biểu đồ thống kê Doanh thu & Tỷ lệ lấp đầy ghế bằng Chart.js
-console.log('admin-charts.js loaded');
+// [TV5 - Nhóm 5: Vé điện tử, vận hành, báo cáo và trợ lý ảo] Biểu đồ thống kê doanh thu, số vé bán & tỉ lệ lấp đầy (Chart.js)
+console.log('[Nhóm 5] admin-charts.js loaded');
