@@ -1,4 +1,4 @@
-// [TV3] Trang chủ, Tìm chuyến, AJAX Autocomplete & Lọc chuyến
+// [TV3 - Nhóm 3: Lịch chạy và tìm kiếm chuyến] Trang chủ, tìm chuyến, chi tiết chuyến, AJAX Autocomplete & lọc chuyến
 const TripModel = require('../models/trip.model');
 
 const CustomerTripController = {
@@ -9,6 +9,17 @@ const CustomerTripController = {
     } catch (err) {
       next(err);
     }
+  },
+  async renderSearchResults(req, res, next) {
+    try {
+      const trips = await TripModel.searchTrips({ origin: req.query.origin, dest: req.query.dest });
+      res.render('customer/search-results', { title: 'Kết quả tìm kiếm chuyến xe', trips });
+    } catch (err) {
+      next(err);
+    }
+  },
+  renderTripDetail(req, res) {
+    res.render('customer/trip-detail', { title: 'Chi tiết chuyến xe & Điểm dừng', tripId: req.params.id });
   },
   async apiSuggestProvinces(req, res, next) {
     try {

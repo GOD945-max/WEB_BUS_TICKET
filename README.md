@@ -1,10 +1,11 @@
 # Hệ Thống Đặt Vé Xe Khách Liên Tỉnh (Bus Ticket Booking System)
 
-Đồ án môn **Web Application Development** — Mô hình nhóm 5 thành viên:
-- **Backend & SSR**: Node.js, Express.js, EJS
-- **Database**: PostgreSQL 16 (10 bảng chuẩn hóa + Unique Partial Index chống đặt trùng ghế)
-- **Frontend**: Bootstrap 5 (trang chức năng chính) + Tailwind CSS (trang tĩnh Giới thiệu, Chính sách, FAQ) + Fetch API (AJAX không tải lại trang)
-- **Triển khai**: Docker & Docker Compose chạy 1 lệnh
+Đồ án môn **Web Application Development** — Thiết kế & Phân công theo chuẩn yêu cầu đề bài (`umt-fal26-project.pdf`):
+- **Quy mô:** Nhóm 5 sinh viên, chia thành **5 nhóm chức năng Full-Stack** có khối lượng tương đương; **mỗi thành viên phụ trách trọn vẹn một nhóm từ Dữ liệu (SQL/Model) $\rightarrow$ Xử lý (Controller/API) $\rightarrow$ Giao diện (Views EJS/Bootstrap/Tailwind/AJAX)**.
+- **Backend & SSR:** Node.js, Express.js, EJS kết hợp AJAX (`fetch` API cập nhật một phần trang không tải lại toàn trang).
+- **Database:** PostgreSQL 16 (10 bảng chuẩn hóa + Unique Partial Index chống đặt trùng ghế).
+- **Frontend:** Tiếng Việt, Responsive trên điện thoại, máy tính bảng và máy tính; ứng dụng chính dùng **Bootstrap 5**, các trang tĩnh dùng **Tailwind CSS**.
+- **Triển khai:** Docker & Docker Compose chạy 1 lệnh (`docker compose up -d`), nạp sẵn dữ liệu mẫu (`Seed Data`).
 
 ---
 
@@ -14,83 +15,69 @@
 docker compose up -d --build
 ```
 - Website chạy tại: `http://localhost:3000`
-- PostgreSQL chạy tại cổng `5432` (Tự động chạy `db/01_init_schema.sql` và `db/02_seed_data.sql`).
+- PostgreSQL chạy tại cổng `5432` (Tự động khởi tạo `db/01_init_schema.sql` và `db/02_seed_data.sql`).
 
 ### Tài khoản mẫu (Seed Data)
 | Vai trò | Email | Mật khẩu |
 |---|---|---|
-| **Admin** | `admin@futabus.vn` | `123456` |
-| **Nhân viên soát vé (Staff)** | `staff@futabus.vn` | `123456` |
-| **Khách hàng 1** | `khach1@gmail.com` | `123456` |
-| **Khách hàng 2** | `khach2@gmail.com` | `123456` |
+| **Quản trị viên (`admin`)** | `admin@futabus.vn` | `123456` |
+| **Nhân viên soát vé (`staff`)** | `staff@futabus.vn` | `123456` |
+| **Khách hàng 1 (`customer`)** | `khach1@gmail.com` | `123456` |
+| **Khách hàng 2 (`customer`)** | `khach2@gmail.com` | `123456` |
 
 ---
 
-## 2. Cấu trúc thư mục & Phân vùng file cho 5 Thành viên
+## 2. Phân chia 5 Nhóm chức năng Full-Stack (Chuẩn Mục 3 Đề bài)
+
+| Thành viên | Nhóm chức năng | Phạm vi phụ trách (Từ Dữ liệu $\rightarrow$ Xử lý $\rightarrow$ Giao diện) | Nhánh Git |
+|---|---|---|---|
+| **Thành viên 1** | **Tài khoản, xác thực và bảo mật** | Đăng ký, xác thực email, đăng nhập, quên mật khẩu; hồ sơ, lịch sử đặt vé; phân quyền; quản lý người dùng; bảo mật chung. | `feat/member1-auth` |
+| **Thành viên 2** | **Danh mục vận hành và nội dung** | Giao diện quản trị chung; bến xe, điểm đón/trả, tuyến, sơ đồ ghế, xe; tin tức, khuyến mãi, FAQ, chính sách; trang tĩnh. | `feat/member2-catalog` |
+| **Thành viên 3** | **Lịch chạy và tìm kiếm chuyến** | Giao diện khách hàng chung; quản lý chuyến, lập lịch, điểm dừng, vòng đời chuyến; trang chủ, tìm chuyến, chi tiết chuyến. | `feat/member3-trips` |
+| **Thành viên 4** | **Đặt vé, chọn ghế và thanh toán** | Sơ đồ chọn ghế, giữ ghế; quy trình đặt vé; thanh toán giả lập; tra cứu, hủy vé; dữ liệu dùng chung. | `feat/member4-booking` |
+| **Thành viên 5** | **Vé điện tử, vận hành, báo cáo và trợ lý ảo** | Vé điện tử, email vé; quản lý đặt chỗ; soát vé; dashboard, báo cáo; trợ lý ảo; triển khai, kiểm thử tích hợp. | `feat/member5-tickets-report` |
+
+---
+
+## 3. Cấu trúc thư mục & Phân vùng file cho 5 Thành viên
 
 ```text
 WEB_BUS_TICKET/
-├── docker-compose.yml & Dockerfile     # [TV5 commit] Cấu hình chạy Postgres + Web bằng 1 lệnh
+├── docker-compose.yml & Dockerfile          # [TV5 - Nhóm 5] Đóng gói chạy Web + PostgreSQL bằng 1 lệnh
+├── package.json & .env.example              # [Dùng chung] Khai báo thư viện & biến môi trường mẫu
 ├── db/
-│   ├── 01_init_schema.sql              # [TV4 commit] Tạo 10 bảng, khóa chính, khóa ngoại, index
-│   └── 02_seed_data.sql                # [TV4 commit] Dữ liệu mẫu (10 bến, 5 tuyến, 6 xe, 12 chuyến, 4 user)
+│   ├── 01_init_schema.sql                   # [TV4 - Nhóm 4] Dữ liệu dùng chung: Tạo 10 bảng + Unique Partial Index
+│   └── 02_seed_data.sql                     # [TV4 - Nhóm 4] Dữ liệu mẫu: 4 user, 10 bến, 5 tuyến, 6 xe, 12 chuyến
 ├── src/
-│   ├── app.js                          # [TV2 gác cổng] Khởi tạo Express, cấu hình EJS, Session, Static
+│   ├── app.js                               # [TV2 - Nhóm 2] Khởi tạo Express, EJS, Session, Static & Mount Routes
 │   ├── config/
-│   │   ├── db.js                       # [TV1 commit] Kết nối Pool tới PostgreSQL
-│   │   └── mailer.js                   # [TV3 commit] Cấu hình Nodemailer gửi email xác thực & vé QR
-│   ├── models/                         # === KHU VỰC CỦA THÀNH VIÊN 1 (VIẾT HÀM SQL) ===
-│   │   ├── user.model.js               # [TV1 commit] Hàm SQL bảng users
-│   │   ├── catalog.model.js            # [TV2 commit] Hàm SQL bảng stations, routes, seat_layouts, buses, articles
-│   │   ├── trip.model.js               # [TV3 commit] Hàm SQL bảng trips, trip_stops & tìm kiếm/lọc chuyến
-│   │   ├── booking.model.js            # [TV4 commit] Hàm SQL giữ ghế 10p, đặt vé, hủy vé, hoàn tiền 100%
-│   │   └── report.model.js             # [TV5 commit] Hàm SQL soát vé, thống kê doanh thu & tỷ lệ lấp đầy
+│   │   ├── db.js                            # [TV1 - Nhóm 1] Kết nối Pool tới PostgreSQL
+│   │   └── mailer.js                        # [TV5 - Nhóm 5] Cấu hình Nodemailer gửi email xác thực & vé điện tử QR
 │   ├── middlewares/
-│   │   └── auth.middleware.js          # [TV1 commit] Kiểm tra đăng nhập & phân quyền (customer, staff, admin)
-│   ├── controllers/                    # === KHU VỰC CỦA TV2 & TV3 (XỬ LÝ BACKEND) ===
-│   │   ├── auth.controller.js          # [TV1 commit] Đăng ký, Xác thực Email, Đăng nhập, Quên MK, Hồ sơ
-│   │   ├── admin-catalog.controller.js # [TV2 commit] CRUD Bến xe, Tuyến, Xe, Sơ đồ ghế, Tin tức, User
-│   │   ├── admin-trip.controller.js    # [TV3 commit] Lập lịch chuyến, đổi trạng thái chuyến (draft->active...)
-│   │   ├── staff-report.controller.js  # [TV5 commit] Nhân viên soát vé (check-in) & Báo cáo Dashboard
-│   │   ├── customer-trip.controller.js # [TV3 commit] Trang chủ, Tìm chuyến, AJAX Autocomplete & Lọc chuyến
-│   │   ├── booking.controller.js       # [TV4 commit] Chọn ghế AJAX, Giữ ghế 10p, Đặt vé, Thanh toán, Hủy vé
-│   │   └── chatbot.controller.js       # [TV5 commit] API AJAX Trợ lý ảo (Chatbot)
-│   └── views/                          # === KHU VỰC CỦA TV4 & TV5 (GIAO DIỆN FRONTEND) ===
-│       ├── layouts/                    # [TV3: customer-layout.ejs] | [TV2: admin-layout.ejs]
-│       ├── static-tailwind/            # [TV2 commit] Các trang tĩnh dùng TAILWIND CSS (Giới thiệu, FAQ, Chính sách)
-│       ├── customer/                   # [TV3 & TV4 commit] Trang chủ, Tìm chuyến, Chọn ghế, Thanh toán, Tra cứu vé
-│       ├── auth/ & admin/ & staff/     # [TV1, TV2, TV5 commit] Đăng nhập/Ký, Quản trị Admin, Nhân viên soát vé, Biểu đồ
-│       └── emails/                     # [TV5 commit] Mẫu HTML Email xác thực & Email Vé điện tử QR
-└── public/js/                          # [TV3: ajax-search.js] [TV4: ajax-seat-booking.js] [TV5: ajax-chatbot.js, admin-charts.js]
-```
-
----
-
-## 3. Quy trình Git & GitHub cho 5 Thành viên
-
-### Danh sách 5 Nhánh tính năng (Feature Branches)
-1. `feat/member1-auth` — **Thành viên 1**: Nhóm 1 (Tài khoản, xác thực & bảo mật)
-2. `feat/member2-catalog` — **Thành viên 2**: Nhóm 2 (Danh mục vận hành & nội dung)
-3. `feat/member3-trips` — **Thành viên 3**: Nhóm 3 (Lịch chạy & tìm kiếm chuyến)
-4. `feat/member4-booking` — **Thành viên 4**: Nhóm 4 (Đặt vé, chọn ghế & thanh toán)
-5. `feat/member5-tickets-report` — **Thành viên 5**: Nhóm 5 (Vé điện tử, vận hành, báo cáo & trợ lý ảo)
-
-### 5 Bước Lệnh Git Hàng Ngày
-```bash
-# Bước 1: Chuyển sang nhánh của mình
-git checkout feat/member1-auth   # (Đổi theo nhánh của bạn)
-
-# Bước 2: Kéo code mới nhất từ nhánh develop về trước khi code
-git pull origin develop
-
-# Bước 3: Kiểm tra và CHỈ git add đúng file thuộc nhóm mình
-git status
-git add <duong-dan-file-cua-ban>
-
-# Bước 4: Commit đúng chuẩn Conventional Commits & Push
-git commit -m "feat(auth): mo ta ngan gon cong viec"
-git push -u origin feat/member1-auth
-
-# Bước 5: Tạo Pull Request trên GitHub từ nhánh cá nhân vào nhánh develop
-# Lưu ý: Chọn "Create a merge commit" (KHÔNG chọn Squash and merge)
+│   │   └── auth.middleware.js               # [TV1 - Nhóm 1] Phân quyền (guest/customer/staff/admin) & bảo mật chung
+│   ├── models/                              # === TẦNG DỮ LIỆU (MỖI THÀNH VIÊN 1 FILE MODEL) ===
+│   │   ├── user.model.js                    # [TV1 - Nhóm 1] SQL bảng users & lịch sử đặt vé của tài khoản
+│   │   ├── catalog.model.js                 # [TV2 - Nhóm 2] SQL bảng stations, routes, seat_layouts, buses, articles
+│   │   ├── trip.model.js                    # [TV3 - Nhóm 3] SQL bảng trips, trip_stops, vòng đời chuyến & tìm chuyến
+│   │   ├── booking.model.js                 # [TV4 - Nhóm 4] SQL giữ ghế 10p, đặt vé, thanh toán, tra cứu & hủy vé
+│   │   └── report.model.js                  # [TV5 - Nhóm 5] SQL vé điện tử, quản lý đặt chỗ, soát vé, báo cáo, chatbot
+│   ├── controllers/                         # === TẦNG XỬ LÝ (THEO ĐÚNG 5 NHÓM CHỨC NĂNG) ===
+│   │   ├── auth.controller.js               # [TV1 - Nhóm 1] Đăng ký, xác thực email, đăng nhập, quên MK, hồ sơ, QL user
+│   │   ├── admin-catalog.controller.js      # [TV2 - Nhóm 2] CRUD bến xe, tuyến, sơ đồ ghế, xe, tin tức & trang tĩnh
+│   │   ├── admin-trip.controller.js         # [TV3 - Nhóm 3] Quản lý chuyến, lập lịch, điểm dừng, vòng đời chuyến
+│   │   ├── customer-trip.controller.js      # [TV3 - Nhóm 3] Trang chủ, tìm chuyến, chi tiết chuyến, AJAX gợi ý & lọc
+│   │   ├── booking.controller.js            # [TV4 - Nhóm 4] Sơ đồ ghế AJAX, giữ ghế 10p, đặt vé, thanh toán, tra cứu/hủy
+│   │   ├── staff-report.controller.js       # [TV5 - Nhóm 5] Quản lý đặt chỗ, nhân viên soát vé, dashboard & báo cáo
+│   │   └── chatbot.controller.js            # [TV5 - Nhóm 5] API AJAX Trợ lý ảo (tìm chuyến, tra cứu vé, hỏi chính sách)
+│   └── views/                               # === TẦNG GIAO DIỆN (EJS + BOOTSTRAP 5 + TAILWIND CSS) ===
+│       ├── layouts/                         # [TV2: admin-layout.ejs] | [TV3: customer-header.ejs, customer-footer.ejs]
+│       ├── auth/                            # [TV1 - Nhóm 1] login, register, forgot-password, profile, booking-history
+│       ├── static-tailwind/                 # [TV2 - Nhóm 2] Trang tĩnh TAILWIND CSS (about.ejs, policy.ejs, faq.ejs)
+│       ├── customer/                        # [TV2: articles] [TV3: home, search-results, trip-detail]
+│       │                                    # [TV4: trip-detail-booking, payment, lookup-ticket]
+│       ├── admin/                           # [TV1: users] [TV2: catalog/*] [TV3: trips/schedule] [TV5: bookings, dashboard]
+│       ├── staff/                           # [TV5 - Nhóm 5] checkin.ejs (Nhân viên soát vé tại bến)
+│       └── emails/                          # [TV1: verify-email.ejs] | [TV5: e-ticket.ejs]
+└── public/js/                               # [TV3: ajax-search.js] [TV4: ajax-seat-booking.js]
+                                             # [TV5: ajax-chatbot.js, admin-charts.js]
 ```

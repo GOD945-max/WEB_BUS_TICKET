@@ -1,4 +1,4 @@
-// [TV3] Cấu hình Nodemailer gửi email xác thực & vé điện tử QR
+// [TV5 - Nhóm 5: Vé điện tử, vận hành, báo cáo và trợ lý ảo] Cấu hình Nodemailer gửi email xác thực & vé điện tử QR
 const nodemailer = require('nodemailer');
 require('dotenv').config();
 

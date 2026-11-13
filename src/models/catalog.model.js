@@ -1,4 +1,4 @@
-// [TV1 viết SQL / TV2 commit] Hàm SQL bảng stations, routes, seat_layouts, buses, articles
+// [TV2 - Nhóm 2: Danh mục vận hành và nội dung] Hàm SQL bảng stations, routes, seat_layouts, buses, articles
 const db = require('../config/db');
 
 const CatalogModel = {

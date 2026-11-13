@@ -1,4 +1,4 @@
-// [TV1 viết SQL / TV5 commit] Hàm SQL soát vé, thống kê doanh thu & tỷ lệ lấp đầy
+// [TV5 - Nhóm 5: Vé điện tử, vận hành, báo cáo và trợ lý ảo] Hàm SQL vé điện tử, quản lý đặt chỗ, soát vé & thống kê
 const db = require('../config/db');
 
 const ReportModel = {

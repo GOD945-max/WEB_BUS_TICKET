@@ -1,4 +1,4 @@
-// [TV1 viết SQL / TV3 commit] Hàm SQL bảng trips, trip_stops & tìm kiếm/lọc chuyến
+// [TV3 - Nhóm 3: Lịch chạy và tìm kiếm chuyến] Hàm SQL bảng trips, trip_stops, vòng đời chuyến & tìm kiếm/lọc chuyến
 const db = require('../config/db');
 
 const TripModel = {

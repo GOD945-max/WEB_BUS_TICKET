@@ -1,7 +1,7 @@
-// [TV2 viết / TV3 commit] Lập lịch chuyến, đổi trạng thái chuyến (draft -> active -> cancelled)
+// [TV3 - Nhóm 3: Lịch chạy và tìm kiếm chuyến] Quản lý chuyến, lập lịch, điểm dừng, vòng đời chuyến
 const AdminTripController = {
   async listSchedule(req, res) {
-    res.render('admin/trips/schedule', { title: 'Quản lý Lịch chạy Chuyến xe' });
+    res.render('admin/trips/schedule', { title: 'Quản lý Lịch chạy & Vòng đời Chuyến xe' });
   },
 };
 

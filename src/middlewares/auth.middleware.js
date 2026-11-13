@@ -1,4 +1,4 @@
-// [TV2 viết / TV1 commit] Kiểm tra đăng nhập & phân quyền (customer, staff, admin)
+// [TV1 - Nhóm 1: Tài khoản, xác thực và bảo mật] Phân quyền (guest, customer, staff, admin) & bảo mật chung
 function requireAuth(req, res, next) {
   if (!req.session || !req.session.user) {
     return res.redirect('/auth/login');

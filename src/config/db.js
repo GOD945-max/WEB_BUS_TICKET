@@ -1,4 +1,4 @@
-// [TV1] Kết nối Pool tới PostgreSQL
+// [TV1 - Nhóm 1: Tài khoản, xác thực và bảo mật] Kết nối Pool tới PostgreSQL
 const { Pool } = require('pg');
 require('dotenv').config();
 

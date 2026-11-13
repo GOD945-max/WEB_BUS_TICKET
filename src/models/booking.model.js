@@ -1,4 +1,4 @@
-// [TV1 viết SQL / TV4 commit] Hàm SQL giữ ghế 10p, đặt vé, hủy vé, hoàn tiền 100%
+// [TV4 - Nhóm 4: Đặt vé, chọn ghế và thanh toán] Hàm SQL giữ ghế 10p, đặt vé, thanh toán, tra cứu & hủy vé
 const db = require('../config/db');
 
 const BookingModel = {

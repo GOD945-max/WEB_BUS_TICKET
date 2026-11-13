@@ -1,4 +1,4 @@
-// [TV1] Hàm SQL bảng users
+// [TV1 - Nhóm 1: Tài khoản, xác thực và bảo mật] Hàm SQL bảng users & lịch sử đặt vé của khách hàng
 const db = require('../config/db');
 
 const UserModel = {
@@ -7,7 +7,10 @@ const UserModel = {
     return rows[0];
   },
   async findById(id) {
-    const { rows } = await db.query('SELECT id, full_name, email, phone, role, is_verified, is_active, created_at FROM users WHERE id = $1', [id]);
+    const { rows } = await db.query(
+      'SELECT id, full_name, email, phone, role, is_verified, is_active, created_at FROM users WHERE id = $1',
+      [id]
+    );
     return rows[0];
   },
   async create({ fullName, email, phone, passwordHash, verifyToken }) {
@@ -19,7 +22,9 @@ const UserModel = {
     return rows[0];
   },
   async listAll() {
-    const { rows } = await db.query('SELECT id, full_name, email, phone, role, is_verified, is_active, created_at FROM users ORDER BY id ASC');
+    const { rows } = await db.query(
+      'SELECT id, full_name, email, phone, role, is_verified, is_active, created_at FROM users ORDER BY id ASC'
+    );
     return rows;
   },
 };
