@@ -22,7 +22,5 @@ Thumbs.db
 *.swo
 ~$*
 
-# Local internal planning documents (kept locally, not pushed to GitHub repo)
-KE_HOACH_*
 
 
