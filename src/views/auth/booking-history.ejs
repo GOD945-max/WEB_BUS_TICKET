@@ -1,6 +1,579 @@
-<!-- [TV1 - Nhóm 1] Giao diện Lịch sử đặt vé của Khách hàng -->
 <%- include('../layouts/customer-header') %>
-<div class="container py-5">
-  <h2 class="h4 text-primary">Lịch sử đặt vé của tôi</h2>
-</div>
+<!-- [TV1 - Nhóm 1: Tài khoản, xác thực và bảo mật] Giao diện Lịch sử đặt vé (Modern Minimalist) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+<style>
+  :root {
+    --mm-bg: #F8FAFC;
+    --mm-surface: #FFFFFF;
+    --mm-border: #E2E8F0;
+    --mm-input-border: #CBD5E1;
+    --mm-text: #0F172A;
+    --mm-muted: #64748B;
+    --mm-accent: #EA580C;
+    --mm-accent-hover: #C2410C;
+    --mm-accent-soft: #FFF7ED;
+  }
+  body {
+    background-color: var(--mm-bg) !important;
+    color: var(--mm-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mm-card {
+    background-color: var(--mm-surface);
+    border: 1px solid var(--mm-border);
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+  }
+  .mm-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--mm-accent);
+  }
+  .mm-title {
+    color: var(--mm-text);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  .mm-subtitle {
+    color: var(--mm-muted);
+  }
+  .mm-num {
+    font-variant-numeric: tabular-nums;
+  }
+  .mm-segmented {
+    display: inline-flex;
+    background-color: #F1F5F9;
+    padding: 4px;
+    border-radius: 10px;
+    border: 1px solid var(--mm-border);
+    gap: 4px;
+  }
+  .mm-segmented .nav-link {
+    color: var(--mm-muted);
+    background-color: transparent;
+    border: 0;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 0.45rem 1rem;
+    transition: all 0.15s ease;
+  }
+  .mm-segmented .nav-link:hover {
+    color: var(--mm-text);
+  }
+  .mm-segmented .nav-link.active {
+    background-color: #FFFFFF;
+    color: var(--mm-text);
+    font-weight: 600;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
+  }
+  .btn-mm-primary {
+    background-color: var(--mm-accent);
+    border: 1px solid var(--mm-accent);
+    color: #FFFFFF;
+    border-radius: 10px;
+    padding: 0.55rem 1.15rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  .btn-mm-primary:hover, .btn-mm-primary:focus {
+    background-color: var(--mm-accent-hover);
+    border-color: var(--mm-accent-hover);
+    color: #FFFFFF;
+  }
+  .btn-mm-outline {
+    background-color: #FFFFFF;
+    border: 1px solid var(--mm-border);
+    color: #334155;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .btn-mm-outline:hover {
+    background-color: #F8FAFC;
+    border-color: var(--mm-input-border);
+    color: var(--mm-text);
+  }
+  .mm-pill {
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 0.38rem 0.8rem;
+    border: 1px solid transparent;
+  }
+  .mm-pill-warning { background-color: #FEF3C7 !important; color: #92400E !important; border-color: #FDE68A; }
+  .mm-pill-success { background-color: #DCFCE7 !important; color: #166534 !important; border-color: #BBF7D0; }
+  .mm-pill-primary { background-color: #DBEAFE !important; color: #1E40AF !important; border-color: #BFDBFE; }
+  .mm-pill-danger { background-color: #FEE2E2 !important; color: #991B1B !important; border-color: #FECACA; }
+  .mm-pill-secondary { background-color: #F1F5F9 !important; color: #475569 !important; border-color: #E2E8F0; }
+  .mm-seat-chip {
+    background-color: #F8FAFC;
+    color: var(--mm-text);
+    border: 1px solid var(--mm-border);
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.5rem;
+  }
+  .mm-filter-pill {
+    background-color: #FFFFFF;
+    border: 1px solid var(--mm-border);
+    color: var(--mm-muted);
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    padding: 0.35rem 0.9rem;
+  }
+  .mm-filter-pill:hover {
+    border-color: var(--mm-input-border);
+    color: var(--mm-text);
+  }
+  .mm-filter-pill.active {
+    background-color: #0F172A;
+    border-color: #0F172A;
+    color: #FFFFFF;
+  }
+  .mm-alert {
+    border: 1px solid var(--mm-border);
+    border-left-width: 3px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+  }
+  .mm-alert-danger {
+    background-color: #FEF2F2;
+    border-color: #FECACA;
+    border-left-color: #DC2626;
+    color: #991B1B;
+  }
+  .mm-alert-success {
+    background-color: #ECFDF5;
+    border-color: #A7F3D0;
+    border-left-color: #16A34A;
+    color: #166534;
+  }
+</style>
+
+<%
+  const rawErrors = (typeof errors !== 'undefined' && errors)
+    ? (Array.isArray(errors) ? errors.filter(Boolean).join(' ') : String(errors))
+    : null;
+  const alertError = (typeof error !== 'undefined' && error)
+    ? error
+    : ((typeof errorMsg !== 'undefined' && errorMsg) ? errorMsg : rawErrors);
+  const alertSuccess = (typeof success !== 'undefined' && success)
+    ? success
+    : ((typeof successMsg !== 'undefined' && successMsg) ? successMsg : null);
+
+  const list = (typeof bookings !== 'undefined' && Array.isArray(bookings)) ? bookings : [];
+  const fullList = (typeof allBookings !== 'undefined' && Array.isArray(allBookings)) ? allBookings : list;
+  const currentFilter = (typeof statusFilter !== 'undefined' && statusFilter) ? String(statusFilter) : '';
+  const s = (typeof stats !== 'undefined' && stats) ? stats : {
+    total: fullList.length,
+    paid: fullList.filter(function (x) { return x.status === 'paid' || x.status === 'checked_in'; }).length,
+    pending: fullList.filter(function (x) { return x.status === 'pending'; }).length,
+    cancelled: fullList.filter(function (x) { return x.status === 'cancelled' || x.status === 'expired'; }).length
+  };
+
+  const statusMap = {
+    pending:    { label: 'Chờ thanh toán',  css: 'badge bg-warning text-dark mm-pill mm-pill-warning', icon: 'bi-hourglass-split' },
+    paid:       { label: 'Đã thanh toán',   css: 'badge bg-success mm-pill mm-pill-success',           icon: 'bi-check-circle-fill' },
+    checked_in: { label: 'Đã soát vé',      css: 'badge bg-primary mm-pill mm-pill-primary',           icon: 'bi-qr-code-scan' },
+    cancelled:  { label: 'Đã hủy',          css: 'badge bg-danger mm-pill mm-pill-danger',             icon: 'bi-x-circle-fill' },
+    expired:    { label: 'Hết hạn giữ ghế', css: 'badge bg-secondary mm-pill mm-pill-secondary',       icon: 'bi-clock-fill' }
+  };
+
+  const filterTabs = [
+    { key: '',           label: 'Tất cả' },
+    { key: 'pending',    label: 'Chờ thanh toán' },
+    { key: 'paid',       label: 'Đã thanh toán' },
+    { key: 'checked_in', label: 'Đã soát vé' },
+    { key: 'cancelled',  label: 'Đã hủy' },
+    { key: 'expired',    label: 'Hết hạn giữ ghế' }
+  ];
+
+  function fmtDateTime(value) {
+    if (!value) return '—';
+    const d = new Date(value);
+    if (isNaN(d.getTime())) return '—';
+    return d.toLocaleString('vi-VN', { timeZone: 'Asia/Ho_Chi_Minh', hour12: false });
+  }
+  function fmtMoney(value) {
+    const n = Number(value || 0);
+    return (isNaN(n) ? 0 : n).toLocaleString('vi-VN') + ' ₫';
+  }
+  function getSeats(b) {
+    if (Array.isArray(b.seat_list) && b.seat_list.length) {
+      return b.seat_list.filter(Boolean).map(String);
+    }
+    if (typeof b.seat_list === 'string' && b.seat_list.replace(/[{}]/g, '').trim()) {
+      return b.seat_list.replace(/[{}"]/g, '').split(',').map(function (x) { return x.trim(); }).filter(Boolean);
+    }
+    if (b.seat_codes) {
+      return String(b.seat_codes).split(',').map(function (x) { return x.trim(); }).filter(Boolean);
+    }
+    return [];
+  }
+  function getHoursLeft(b) {
+    if (typeof b.hoursUntilDeparture === 'number' && !isNaN(b.hoursUntilDeparture)) return b.hoursUntilDeparture;
+    if (b.hours_until_departure !== undefined && b.hours_until_departure !== null && !isNaN(Number(b.hours_until_departure))) {
+      return Number(b.hours_until_departure);
+    }
+    const t = new Date(b.departure_time).getTime();
+    return isNaN(t) ? -Infinity : (t - Date.now()) / (1000 * 60 * 60);
+  }
+%>
+
+<main class="container py-5">
+  <!-- Tiêu đề trang + CTA đặt chuyến mới -->
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-end gap-3 mb-4">
+    <div>
+      <div class="mm-eyebrow mb-1">TÀI KHOẢN CÁ NHÂN</div>
+      <h1 class="h3 mm-title mb-1">Lịch sử đặt vé của tôi</h1>
+      <p class="mm-subtitle mb-0 small">Theo dõi trạng thái đơn, xem chi tiết vé điện tử và hủy vé theo chính sách nhà xe.</p>
+    </div>
+    <div class="d-flex flex-wrap align-items-center gap-2">
+      <ul class="nav mm-segmented flex-nowrap overflow-auto">
+        <li class="nav-item">
+          <a class="nav-link text-nowrap" href="/auth/profile">
+            Hồ sơ cá nhân
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active text-nowrap" aria-current="page" href="/auth/booking-history">
+            Lịch sử đặt vé
+          </a>
+        </li>
+      </ul>
+      <a href="/auth/booking-history/export-csv" class="btn btn-mm-outline text-nowrap">
+        <i class="bi bi-download me-1"></i>Xuất CSV
+      </a>
+      <a href="/" class="btn btn-mm-primary text-nowrap">
+        <i class="bi bi-plus-lg me-1"></i>Đặt chuyến xe mới
+      </a>
+    </div>
+  </div>
+
+  <!-- Thông báo lỗi / thành công -->
+  <% if (alertError) { %>
+    <div class="alert alert-danger alert-dismissible fade show mm-alert mm-alert-danger mb-4" role="alert">
+      <span><%= alertError %></span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+    </div>
+  <% } %>
+  <% if (alertSuccess) { %>
+    <div class="alert alert-success alert-dismissible fade show mm-alert mm-alert-success mb-4" role="alert">
+      <span><%= alertSuccess %></span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+    </div>
+  <% } %>
+
+  <% if (fullList.length > 0) { %>
+    <!-- Thống kê nhanh tối giản -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="card mm-card h-100">
+          <div class="card-body py-3 px-4">
+            <div class="mm-subtitle small mb-1">Tổng số đơn</div>
+            <div class="h4 fw-semibold mm-num mb-0" style="color: var(--mm-text);"><%= s.total %></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card mm-card h-100">
+          <div class="card-body py-3 px-4">
+            <div class="mm-subtitle small mb-1">Đã thanh toán / soát vé</div>
+            <div class="h4 fw-semibold mm-num text-success mb-0"><%= s.paid %></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card mm-card h-100">
+          <div class="card-body py-3 px-4">
+            <div class="mm-subtitle small mb-1">Chờ thanh toán</div>
+            <div class="h4 fw-semibold mm-num mb-0" style="color: var(--mm-accent);"><%= s.pending %></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card mm-card h-100">
+          <div class="card-body py-3 px-4">
+            <div class="mm-subtitle small mb-1">Đã hủy / hết hạn</div>
+            <div class="h4 fw-semibold mm-num text-danger mb-0"><%= s.cancelled %></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bộ lọc trạng thái -->
+    <div class="d-flex flex-nowrap overflow-auto gap-2 mb-4 pb-1">
+      <% filterTabs.forEach(function (tab) { %>
+        <a href="/auth/booking-history<%= tab.key ? '?status=' + tab.key : '' %>"
+           class="btn text-nowrap mm-filter-pill <%= currentFilter === tab.key ? 'active' : '' %>">
+          <%= tab.label %>
+        </a>
+      <% }); %>
+    </div>
+  <% } %>
+
+  <% if (list.length === 0) { %>
+    <% if (fullList.length > 0 && currentFilter) { %>
+      <div class="card mm-card">
+        <div class="card-body text-center py-5 p-md-5">
+          <i class="bi bi-funnel mm-subtitle" style="font-size: 2.5rem;"></i>
+          <h2 class="h5 mm-title mt-3">Không có đơn nào ở trạng thái này</h2>
+          <p class="mm-subtitle small mb-4">Vui lòng chọn bộ lọc khác để xem các đơn đặt vé còn lại.</p>
+          <a href="/auth/booking-history" class="btn btn-mm-outline px-4 py-2">
+            Xem tất cả đơn đặt vé
+          </a>
+        </div>
+      </div>
+    <% } else { %>
+      <!-- Trạng thái trống (Empty State) -->
+      <div class="card mm-card">
+        <div class="card-body text-center py-5 p-md-5">
+          <div class="d-inline-flex align-items-center justify-content-center rounded-circle mb-3"
+               style="width: 68px; height: 68px; background-color: var(--mm-accent-soft); color: var(--mm-accent); border: 1px solid #FED7AA;">
+            <i class="bi bi-ticket-perforated fs-3"></i>
+          </div>
+          <h2 class="h5 mm-title mt-2">Bạn chưa có đơn đặt vé nào</h2>
+          <p class="mm-subtitle small mb-4">Hãy tìm chuyến xe phù hợp và đặt vé trực tuyến chỉ trong vài bước đơn giản.</p>
+          <a href="/" class="btn btn-mm-primary px-4 py-2">
+            Tìm chuyến xe ngay
+          </a>
+        </div>
+      </div>
+    <% } %>
+  <% } else { %>
+    <!-- Danh sách đơn đặt vé dạng thẻ tối giản -->
+    <div class="d-flex flex-column gap-3">
+      <% list.forEach(function (b, index) {
+           const st = statusMap[b.status] || { label: b.status || 'Không xác định', css: 'badge bg-secondary mm-pill mm-pill-secondary', icon: 'bi-question-circle' };
+           const seats = getSeats(b);
+           const hoursLeft = getHoursLeft(b);
+           const canCancel = b.status === 'pending' || (b.status === 'paid' && hoursLeft >= 24);
+           const paidButLate = b.status === 'paid' && hoursLeft < 24;
+           const refund = Number(b.refund_amount || 0);
+           const modalId = 'bookingDetailModal-' + index;
+           const code = String(b.booking_code || '');
+           const routeText = (b.origin_province || b.pickup_province || '') + ' → ' + (b.destination_province || b.dropoff_province || '');
+      %>
+        <div class="card mm-card">
+          <div class="card-header bg-transparent py-3 px-4 d-flex flex-wrap justify-content-between align-items-center gap-2"
+               style="border-bottom: 1px solid #F1F5F9;">
+            <div class="d-flex flex-wrap align-items-center gap-3">
+              <div>
+                <span class="mm-subtitle small me-1">Mã đặt chỗ</span>
+                <span class="fw-semibold fs-5 font-monospace" style="color: var(--mm-accent);"><%= code %></span>
+              </div>
+              <span class="mm-subtitle small">
+                Ngày đặt: <%= fmtDateTime(b.created_at) %>
+              </span>
+            </div>
+            <span class="<%= st.css %>">
+              <%= st.label %>
+            </span>
+          </div>
+
+          <div class="card-body p-4">
+            <div class="row g-4">
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="mm-subtitle small mb-1">Tuyến xe</div>
+                <div class="fw-semibold" style="color: var(--mm-text);"><%= b.route_name || '—' %></div>
+                <div class="small mm-subtitle"><%= routeText %></div>
+                <div class="small mt-1" style="color: #334155;">
+                  <span class="fw-semibold"><%= b.license_plate || '—' %></span>
+                  <% if (b.bus_type) { %><span class="mm-subtitle"> · <%= b.bus_type %></span><% } %>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="mm-subtitle small mb-1">Điểm đón → Điểm trả</div>
+                <div class="fw-medium small mb-1" style="color: var(--mm-text);">
+                  <i class="bi bi-circle-fill text-success me-1" style="font-size: .45rem; vertical-align: middle;"></i><%= b.pickup_station_name || '—' %>
+                </div>
+                <div class="fw-medium small" style="color: var(--mm-text);">
+                  <i class="bi bi-geo-alt-fill text-danger me-1"></i><%= b.dropoff_station_name || '—' %>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6 col-xl-3">
+                <div class="mm-subtitle small mb-1">Giờ khởi hành</div>
+                <div class="fw-semibold mm-num" style="color: var(--mm-text);"><%= fmtDateTime(b.departure_time) %></div>
+                <div class="mt-2 d-flex flex-wrap gap-1">
+                  <% if (seats.length) { %>
+                    <% seats.forEach(function (seat) { %>
+                      <span class="mm-seat-chip"><%= seat %></span>
+                    <% }); %>
+                  <% } else { %>
+                    <span class="small mm-subtitle">Chưa có thông tin ghế</span>
+                  <% } %>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-6 col-xl-3 text-xl-end">
+                <div class="mm-subtitle small mb-1">Tổng tiền</div>
+                <div class="fw-semibold fs-5 mm-num <%= b.status === 'cancelled' ? 'text-decoration-line-through mm-subtitle' : '' %>"
+                     style="<%= b.status === 'cancelled' ? '' : 'color: var(--mm-text);' %>">
+                  <%= fmtMoney(b.total_amount) %>
+                </div>
+                <% if (b.status === 'cancelled') { %>
+                  <div class="small mm-num <%= refund > 0 ? 'text-success fw-semibold' : 'mm-subtitle' %>">
+                    <%= refund > 0 ? 'Hoàn tiền: ' + fmtMoney(refund) : 'Không phát sinh hoàn tiền' %>
+                  </div>
+                <% } %>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer bg-transparent py-3 px-4 d-flex flex-wrap justify-content-end align-items-center gap-2"
+               style="border-top: 1px solid #F1F5F9;">
+            <button type="button" class="btn btn-mm-outline btn-sm px-3" data-bs-toggle="modal" data-bs-target="#<%= modalId %>">
+              Chi tiết
+            </button>
+
+            <% if (b.status === 'pending') { %>
+              <a href="/thanh-toan/<%= encodeURIComponent(code) %>" class="btn btn-mm-primary btn-sm px-3">
+                Thanh toán ngay
+              </a>
+            <% } %>
+
+            <% if (canCancel) { %>
+              <form method="POST" action="/auth/booking-history/<%= encodeURIComponent(code) %>/cancel" class="d-inline cancel-booking-form" data-booking-code="<%= code %>" data-booking-status="<%= b.status %>">
+                <button type="submit" class="btn btn-outline-danger btn-sm px-3" style="border-radius: 10px;">
+                  Hủy vé
+                </button>
+              </form>
+            <% } else if (paidButLate) { %>
+              <div class="d-flex flex-column align-items-end">
+                <button type="button" class="btn btn-outline-secondary btn-sm px-3" style="border-radius: 10px;" disabled aria-disabled="true">
+                  Hủy vé
+                </button>
+                <small class="mm-subtitle mt-1">Chỉ hủy trước giờ khởi hành ≥ 24h</small>
+              </div>
+            <% } %>
+          </div>
+        </div>
+
+        <!-- Modal Chi tiết vé -->
+        <div class="modal fade" id="<%= modalId %>" tabindex="-1" aria-labelledby="<%= modalId %>-label" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+            <div class="modal-content" style="border: 1px solid var(--mm-border); border-radius: 16px;">
+              <div class="modal-header bg-white px-4 py-3" style="border-bottom: 1px solid #F1F5F9;">
+                <h2 class="modal-title h5 mm-title" id="<%= modalId %>-label">
+                  Chi tiết đơn đặt vé <span class="font-monospace" style="color: var(--mm-accent);"><%= code %></span>
+                </h2>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+              </div>
+              <div class="modal-body p-4">
+                <div class="d-flex justify-content-between align-items-center mb-4 pb-3 border-bottom" style="border-color: #F1F5F9 !important;">
+                  <span class="mm-subtitle small">Trạng thái đơn</span>
+                  <span class="<%= st.css %>"><%= st.label %></span>
+                </div>
+
+                <div class="row g-4">
+                  <div class="col-12 col-md-6">
+                    <h3 class="h6 mm-title mb-2">Hành trình</h3>
+                    <ul class="list-unstyled small mb-0">
+                      <li class="mb-1"><span class="mm-subtitle">Tuyến:</span> <strong><%= b.route_name || '—' %></strong></li>
+                      <li class="mb-1"><span class="mm-subtitle">Lộ trình:</span> <%= routeText %></li>
+                      <li class="mb-1"><span class="mm-subtitle">Khởi hành:</span> <strong><%= fmtDateTime(b.departure_time) %></strong></li>
+                      <li class="mb-1"><span class="mm-subtitle">Dự kiến đến:</span> <%= fmtDateTime(b.arrival_time) %></li>
+                      <li class="mb-1"><span class="mm-subtitle">Biển số xe:</span> <%= b.license_plate || '—' %></li>
+                      <li class="mb-1"><span class="mm-subtitle">Loại xe:</span> <%= b.bus_type || '—' %></li>
+                    </ul>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <h3 class="h6 mm-title mb-2">Điểm đón &amp; trả khách</h3>
+                    <ul class="list-unstyled small mb-0">
+                      <li class="mb-2">
+                        <span class="mm-subtitle">Điểm đón:</span> <strong><%= b.pickup_station_name || '—' %></strong>
+                        <% if (b.pickup_station_address) { %><div class="mm-subtitle"><%= b.pickup_station_address %></div><% } %>
+                        <% if (b.pickup_time) { %><div>Giờ đón: <%= fmtDateTime(b.pickup_time) %></div><% } %>
+                      </li>
+                      <li class="mb-1">
+                        <span class="mm-subtitle">Điểm trả:</span> <strong><%= b.dropoff_station_name || '—' %></strong>
+                        <% if (b.dropoff_station_address) { %><div class="mm-subtitle"><%= b.dropoff_station_address %></div><% } %>
+                        <% if (b.dropoff_time) { %><div>Giờ trả: <%= fmtDateTime(b.dropoff_time) %></div><% } %>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <h3 class="h6 mm-title mb-2">Hành khách</h3>
+                    <ul class="list-unstyled small mb-0">
+                      <li class="mb-1"><span class="mm-subtitle">Họ tên:</span> <%= b.passenger_name || '—' %></li>
+                      <li class="mb-1"><span class="mm-subtitle">Điện thoại:</span> <%= b.passenger_phone || '—' %></li>
+                      <li class="mb-1 text-break"><span class="mm-subtitle">Email:</span> <%= b.passenger_email || '—' %></li>
+                    </ul>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <h3 class="h6 mm-title mb-2">Vé &amp; thanh toán</h3>
+                    <ul class="list-unstyled small mb-0">
+                      <li class="mb-1"><span class="mm-subtitle">Số ghế:</span> <%= seats.length ? seats.join(', ') : '—' %> (<%= b.seat_count || seats.length %> vé)</li>
+                      <% if (b.ticket_codes) { %><li class="mb-1 text-break"><span class="mm-subtitle">Mã vé:</span> <span class="font-monospace"><%= b.ticket_codes %></span></li><% } %>
+                      <li class="mb-1"><span class="mm-subtitle">Tổng tiền:</span> <strong style="color: var(--mm-text);"><%= fmtMoney(b.total_amount) %></strong></li>
+                      <% if (b.status === 'cancelled') { %>
+                        <li class="mb-1"><span class="mm-subtitle">Số tiền hoàn:</span> <strong class="text-success"><%= fmtMoney(refund) %></strong></li>
+                      <% } %>
+                      <% if (b.status === 'pending' && b.hold_expires_at) { %>
+                        <li class="mb-1" style="color: var(--mm-accent);">Giữ ghế đến: <strong><%= fmtDateTime(b.hold_expires_at) %></strong></li>
+                      <% } %>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="p-3 small mt-4 mb-0 rounded-3" style="background-color: #F8FAFC; border: 1px solid var(--mm-border); border-left: 3px solid var(--mm-accent); color: #475569;">
+                  Chính sách hủy vé: Đơn <strong>chờ thanh toán</strong> có thể hủy bất kỳ lúc nào; đơn <strong>đã thanh toán</strong> chỉ được hủy trước giờ khởi hành ít nhất 24 giờ.
+                </div>
+              </div>
+              <div class="modal-footer bg-white px-4 py-3 flex-wrap gap-2" style="border-top: 1px solid #F1F5F9;">
+                <a href="/tra-cuu-ve?bookingCode=<%= encodeURIComponent(code) %>" class="btn btn-mm-outline">
+                  Tra cứu vé điện tử
+                </a>
+                <% if (b.status === 'pending') { %>
+                  <a href="/thanh-toan/<%= encodeURIComponent(code) %>" class="btn btn-mm-primary">
+                    Thanh toán ngay
+                  </a>
+                <% } %>
+                <button type="button" class="btn btn-mm-outline" data-bs-dismiss="modal">Đóng</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% }); %>
+    </div>
+  <% } %>
+</main>
+
+<script>
+  (function () {
+    document.querySelectorAll('.cancel-booking-form').forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        var code = form.getAttribute('data-booking-code') || '';
+        var status = form.getAttribute('data-booking-status');
+        var message = 'Bạn có chắc chắn muốn hủy đơn đặt vé #' + code + ' không?\n\n';
+        message += status === 'paid'
+          ? 'Đơn đã thanh toán sẽ được hoàn tiền theo chính sách của nhà xe.'
+          : 'Ghế đang giữ sẽ được nhả lại cho hành khách khác.';
+        message += '\nThao tác này không thể hoàn tác.';
+
+        if (!window.confirm(message)) {
+          event.preventDefault();
+          return;
+        }
+        var btn = form.querySelector('button[type="submit"]');
+        if (btn) {
+          btn.disabled = true;
+          btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>Đang hủy...';
+        }
+      });
+    });
+  })();
+</script>
 <%- include('../layouts/customer-footer') %>

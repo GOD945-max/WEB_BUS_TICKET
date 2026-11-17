@@ -1,4 +1,178 @@
-<!-- [TV1 - Nhóm 1] Mẫu HTML Email Xác thực tài khoản -->
-<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-  <h2 style="color: #1e3a8a;">XÁC THỰC TÀI KHOẢN - BUS TICKET BOOKING SYSTEM</h2>
-</div>
+<%
+  /**
+   * [TV1 - Nhóm 1: Tài khoản, xác thực và bảo mật]
+   * Mẫu HTML Email độc lập theo phong cách Modern Minimalist (100% Inline CSS) phục vụ 2 chế độ:
+   * - type === 'verify' (Mặc định): Xác thực tài khoản đăng ký mới
+   * - type === 'reset'            : Yêu cầu đặt lại mật khẩu
+   */
+  var type = (typeof type !== 'undefined' && String(type).trim().toLowerCase() === 'reset')
+    ? 'reset'
+    : 'verify';
+
+  var fullName = (typeof fullName !== 'undefined' && fullName && String(fullName).trim())
+    ? String(fullName).trim()
+    : 'Quý hành khách';
+
+  var email = (typeof email !== 'undefined' && email && String(email).trim())
+    ? String(email).trim()
+    : '';
+
+  var actionUrl = (typeof actionUrl !== 'undefined' && actionUrl && String(actionUrl).trim())
+    ? String(actionUrl).trim()
+    : '#';
+
+  var supportEmail = (typeof supportEmail !== 'undefined' && supportEmail && String(supportEmail).trim())
+    ? String(supportEmail).trim()
+    : 'hotro@busticket.vn';
+
+  var supportHotline = (typeof supportHotline !== 'undefined' && supportHotline && String(supportHotline).trim())
+    ? String(supportHotline).trim()
+    : '1900 6067';
+
+  var year = (typeof year !== 'undefined' && year)
+    ? year
+    : new Date().getFullYear();
+
+  var headingTitle = (type === 'reset')
+    ? 'Yêu cầu Đặt lại Mật khẩu — Hệ thống Vé Xe Khách Liên Tỉnh'
+    : 'Xác thực Tài khoản Đặt vé Xe khách Liên tỉnh';
+
+  var badgeLabel = (type === 'reset')
+    ? 'KHÔI PHỤC MẬT KHẨU'
+    : 'XÁC THỰC TÀI KHOẢN';
+%>
+<!DOCTYPE html>
+<html lang="vi" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title><%= headingTitle %></title>
+</head>
+<body style="margin: 0; padding: 0; background-color: #F8FAFC; font-family: Arial, sans-serif; color: #0F172A; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width: 100%; background-color: #F8FAFC; margin: 0; padding: 40px 12px; font-family: Arial, sans-serif;">
+    <tr>
+      <td align="center" valign="top" style="padding: 0;">
+        <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width: 100%; max-width: 600px; margin: 0 auto; background-color: #FFFFFF; border-radius: 12px; overflow: hidden; border: 1px solid #E2E8F0;">
+          
+          <!-- Thanh nhấn mỏng màu cam #EA580C -->
+          <tr>
+            <td style="height: 3px; background-color: #EA580C; font-size: 0; line-height: 0;">&nbsp;</td>
+          </tr>
+
+          <!-- Header tối giản -->
+          <tr>
+            <td style="background-color: #FFFFFF; padding: 28px 36px 20px 36px; border-bottom: 1px solid #F1F5F9;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td align="left" valign="middle">
+                    <div style="font-size: 15px; font-weight: bold; color: #0F172A; letter-spacing: 0.4px; margin: 0;">
+                      BUSTICKET
+                    </div>
+                    <div style="font-size: 12px; color: #64748B; margin-top: 2px;">
+                      BusTicket — Hệ thống Đặt vé Xe khách Liên tỉnh
+                    </div>
+                  </td>
+                  <td align="right" valign="middle">
+                    <span style="display: inline-block; background-color: #FFF7ED; color: #EA580C; border: 1px solid #FED7AA; font-size: 11px; font-weight: bold; letter-spacing: 0.6px; padding: 4px 10px; border-radius: 999px;">
+                      <%= badgeLabel %>
+                    </span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Nội dung chính -->
+          <tr>
+            <td style="padding: 36px 36px 30px 36px; font-family: Arial, sans-serif; font-size: 15px; line-height: 1.65; color: #475569;">
+              
+              <h1 style="margin: 0 0 18px 0; font-family: Arial, sans-serif; font-size: 20px; line-height: 1.4; font-weight: bold; color: #0F172A; text-align: left;">
+                <% if (type === 'reset') { %>
+                  Yêu cầu Đặt lại Mật khẩu — Hệ thống Vé Xe Khách Liên Tỉnh
+                <% } else { %>
+                  Xác thực Tài khoản Đặt vé Xe khách Liên tỉnh
+                <% } %>
+              </h1>
+
+              <p style="margin: 0 0 16px 0; font-size: 15px; color: #0F172A;">
+                Xin chào <strong><%= fullName || 'Quý hành khách' %></strong><% if (email) { %> (<span style="color: #64748B;"><%= email %></span>)<% } %>,
+              </p>
+
+              <% if (type === 'reset') { %>
+                <p style="margin: 0 0 16px 0; font-size: 15px; color: #475569;">
+                  Hệ thống <strong>BusTicket</strong> vừa nhận được yêu cầu đặt lại mật khẩu cho tài khoản gắn với địa chỉ email này.
+                </p>
+                <p style="margin: 0 0 28px 0; font-size: 15px; color: #475569;">
+                  Vui lòng nhấn nút bên dưới để thiết lập mật khẩu mới:
+                </p>
+
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 0 0 28px 0;">
+                  <tr>
+                    <td align="left" style="text-align: left;">
+                      <a href="<%= actionUrl %>" target="_blank" rel="noopener noreferrer" style="display: inline-block; background-color: #EA580C; color: #FFFFFF; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-decoration: none; letter-spacing: 0.4px; padding: 13px 28px; border-radius: 8px;">
+                        ĐẶT LẠI MẬT KHẨU
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              <% } else { %>
+                <p style="margin: 0 0 16px 0; font-size: 15px; color: #475569;">
+                  Chào mừng <strong><%= fullName || 'Quý hành khách' %></strong> đến với hệ thống đặt vé xe khách trực tuyến <strong>BusTicket</strong>.
+                </p>
+                <p style="margin: 0 0 28px 0; font-size: 15px; color: #475569;">
+                  Để hoàn tất đăng ký và kích hoạt tài khoản trước khi đăng nhập, vui lòng nhấn nút bên dưới:
+                </p>
+
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin: 0 0 28px 0;">
+                  <tr>
+                    <td align="left" style="text-align: left;">
+                      <a href="<%= actionUrl %>" target="_blank" rel="noopener noreferrer" style="display: inline-block; background-color: #EA580C; color: #FFFFFF; font-family: Arial, sans-serif; font-size: 14px; font-weight: bold; text-decoration: none; letter-spacing: 0.4px; padding: 13px 28px; border-radius: 8px;">
+                        XÁC THỰC TÀI KHOẢN NGAY
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              <% } %>
+
+              <!-- Đường dẫn thuần văn bản -->
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; margin: 0 0 24px 0;">
+                <tr>
+                  <td style="padding: 14px 16px; font-family: Arial, sans-serif;">
+                    <p style="margin: 0 0 6px 0; font-size: 12px; font-weight: bold; color: #64748B;">
+                      Hoặc sao chép đường dẫn dưới đây vào trình duyệt web:
+                    </p>
+                    <p style="margin: 0; font-size: 13px; line-height: 1.5; word-break: break-all;">
+                      <a href="<%= actionUrl %>" target="_blank" rel="noopener noreferrer" style="color: #EA580C; text-decoration: underline; word-break: break-all;"><%= actionUrl %></a>
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <p style="margin: 0; font-size: 13px; color: #64748B; line-height: 1.6;">
+                <%= type === 'reset'
+                  ? 'Nếu Quý khách không thực hiện yêu cầu đặt lại mật khẩu này, vui lòng bỏ qua email — mật khẩu hiện tại của Quý khách vẫn an toàn.'
+                  : 'Nếu Quý khách không thực hiện đăng ký tài khoản này, vui lòng bỏ qua email này.' %>
+              </p>
+            </td>
+          </tr>
+
+          <!-- Footer tối giản -->
+          <tr>
+            <td align="center" style="background-color: #F8FAFC; border-top: 1px solid #E2E8F0; padding: 20px 36px; text-align: center; font-family: Arial, sans-serif; font-size: 12px; line-height: 1.6; color: #64748B;">
+              <p style="margin: 0 0 6px 0;">
+                Tổng đài 24/7: <strong style="color: #EA580C;"><%= supportHotline %></strong> &nbsp;|&nbsp;
+                Email: <a href="mailto:<%= supportEmail %>" style="color: #0F172A; text-decoration: none; font-weight: bold;"><%= supportEmail %></a>
+              </p>
+              <p style="margin: 0; font-size: 11px; color: #94A3B8;">
+                Đây là email tự động — vui lòng không trả lời trực tiếp. &copy; <%= year %> BusTicket.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

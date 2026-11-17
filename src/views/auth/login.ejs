@@ -1,6 +1,420 @@
-<!-- [TV1 - Nhóm 1: Tài khoản, xác thực và bảo mật] Giao diện Đăng nhập -->
 <%- include('../layouts/customer-header') %>
-<div class="container py-5">
-  <h2 class="h4 text-primary">Đăng nhập hệ thống</h2>
-</div>
+<!-- [TV1 - Nhóm 1: Tài khoản, xác thực và bảo mật] Giao diện Đăng nhập hệ thống (Modern Minimalist) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+<style>
+  :root {
+    --mm-bg: #F8FAFC;
+    --mm-surface: #FFFFFF;
+    --mm-border: #E2E8F0;
+    --mm-input-border: #CBD5E1;
+    --mm-text: #0F172A;
+    --mm-muted: #64748B;
+    --mm-accent: #EA580C;
+    --mm-accent-hover: #C2410C;
+    --mm-accent-soft: #FFF7ED;
+  }
+  body {
+    background-color: var(--mm-bg) !important;
+    color: var(--mm-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .mm-auth-wrap {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+  .mm-card {
+    background-color: var(--mm-surface);
+    border: 1px solid var(--mm-border);
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+  }
+  .mm-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--mm-accent);
+  }
+  .mm-title {
+    color: var(--mm-text);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  .mm-subtitle {
+    color: var(--mm-muted);
+  }
+  .mm-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #334155;
+    margin-bottom: 0.4rem;
+  }
+  .mm-input {
+    border: 1px solid var(--mm-border);
+    border-radius: 10px !important;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.9375rem;
+    color: var(--mm-text);
+    background-color: #FFFFFF;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .mm-input::placeholder {
+    color: #94A3B8;
+  }
+  .mm-input:hover {
+    border-color: var(--mm-input-border);
+  }
+  .mm-input:focus {
+    border-color: var(--mm-accent);
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.12);
+    outline: none;
+  }
+  .mm-password-group {
+    border: 1px solid var(--mm-border);
+    border-radius: 10px;
+    background-color: #FFFFFF;
+    overflow: hidden;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .mm-password-group:hover {
+    border-color: var(--mm-input-border);
+  }
+  .mm-password-group:focus-within {
+    border-color: var(--mm-accent);
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.12);
+  }
+  .mm-password-group .form-control {
+    border: 0;
+    padding: 0.65rem 0.9rem;
+    font-size: 0.9375rem;
+    color: var(--mm-text);
+    background: transparent;
+  }
+  .mm-password-group .form-control:focus {
+    box-shadow: none;
+  }
+  .mm-password-group .toggle-password {
+    border: 0;
+    background: transparent;
+    color: var(--mm-muted);
+    padding: 0 0.9rem;
+  }
+  .mm-password-group .toggle-password:hover {
+    color: var(--mm-text);
+  }
+  .btn-mm-primary {
+    background-color: var(--mm-accent);
+    border: 1px solid var(--mm-accent);
+    color: #FFFFFF;
+    border-radius: 10px;
+    padding: 0.7rem 1.25rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    transition: background-color 0.15s ease;
+  }
+  .btn-mm-primary:hover, .btn-mm-primary:focus {
+    background-color: var(--mm-accent-hover);
+    border-color: var(--mm-accent-hover);
+    color: #FFFFFF;
+  }
+  .btn-mm-ghost {
+    background-color: transparent;
+    border: 1px solid var(--mm-border);
+    color: #334155;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.15s ease;
+  }
+  .btn-mm-ghost:hover {
+    background-color: #F8FAFC;
+    border-color: var(--mm-input-border);
+    color: var(--mm-text);
+  }
+  .mm-link {
+    color: var(--mm-accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .mm-link:hover {
+    color: var(--mm-accent-hover);
+    text-decoration: underline;
+  }
+  .mm-alert {
+    border: 1px solid var(--mm-border);
+    border-left-width: 3px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+  }
+  .mm-alert-danger {
+    background-color: #FEF2F2;
+    border-color: #FECACA;
+    border-left-color: #DC2626;
+    color: #991B1B;
+  }
+  .mm-alert-success {
+    background-color: #ECFDF5;
+    border-color: #A7F3D0;
+    border-left-color: #16A34A;
+    color: #166534;
+  }
+  .mm-demo-row {
+    background-color: #F8FAFC;
+    border: 1px solid var(--mm-border);
+    color: var(--mm-text);
+    border-radius: 10px;
+    font-size: 0.825rem;
+    transition: all 0.15s ease;
+  }
+  .mm-demo-row:hover {
+    background-color: var(--mm-accent-soft);
+    border-color: #FED7AA;
+    color: var(--mm-text);
+  }
+  .mm-demo-row:hover .mm-demo-action {
+    color: var(--mm-accent);
+  }
+  .mm-demo-action {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--mm-muted);
+  }
+  .mm-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    display: inline-block;
+    flex-shrink: 0;
+  }
+</style>
+
+<%
+  const rawErrors = (typeof errors !== 'undefined' && errors)
+    ? (Array.isArray(errors) ? errors.filter(Boolean).join(' ') : String(errors))
+    : null;
+  const alertError = (typeof error !== 'undefined' && error)
+    ? error
+    : ((typeof errorMsg !== 'undefined' && errorMsg) ? errorMsg : rawErrors);
+  const alertSuccess = (typeof success !== 'undefined' && success)
+    ? success
+    : ((typeof successMsg !== 'undefined' && successMsg) ? successMsg : null);
+%>
+
+<main class="container py-5 my-md-2">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-5">
+      <div class="mm-auth-wrap">
+        <div class="card mm-card mb-3">
+          <div class="card-body p-4 p-md-5">
+            <!-- Tiêu đề tối giản -->
+            <div class="mb-4">
+              <div class="mm-eyebrow mb-2">BUSTICKET</div>
+              <h1 class="h4 mm-title mb-1">Đăng nhập hệ thống</h1>
+              <p class="small mm-subtitle mb-0">
+                BusTicket — Hệ thống Đặt vé Xe khách Liên tỉnh
+              </p>
+            </div>
+
+            <!-- Thông báo lỗi / thành công -->
+            <% if (alertError) { %>
+              <div class="alert alert-danger alert-dismissible fade show mm-alert mm-alert-danger mb-4" role="alert">
+                <span><%= alertError %></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+              </div>
+            <% } %>
+
+            <% if (alertSuccess) { %>
+              <div class="alert alert-success alert-dismissible fade show mm-alert mm-alert-success mb-4" role="alert">
+                <span><%= alertSuccess %></span>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+              </div>
+            <% } %>
+
+            <!-- Biểu mẫu đăng nhập -->
+            <form id="loginForm" method="POST" action="/auth/login">
+              <!-- 1. Email -->
+              <div class="mb-3">
+                <label for="email" class="form-label mm-label">
+                  Địa chỉ Email <span class="text-danger">*</span>
+                </label>
+                <input
+                  type="email"
+                  class="form-control mm-input"
+                  id="email"
+                  name="email"
+                  required
+                  autocomplete="email"
+                  placeholder="nhapemail@busticket.vn"
+                  value="<%= typeof oldInput !== 'undefined' && oldInput?.email ? oldInput.email : '' %>"
+                />
+              </div>
+
+              <!-- 2. Mật khẩu -->
+              <div class="mb-4">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <label for="password" class="form-label mm-label mb-0">
+                    Mật khẩu <span class="text-danger">*</span>
+                  </label>
+                  <a href="/auth/forgot-password" class="small mm-link">
+                    Quên mật khẩu?
+                  </a>
+                </div>
+                <div class="input-group mm-password-group">
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    minlength="6"
+                    required
+                    autocomplete="current-password"
+                    placeholder="Nhập mật khẩu của bạn"
+                  />
+                  <button
+                    class="btn toggle-password"
+                    type="button"
+                    data-target="password"
+                    aria-label="Hiện hoặc ẩn mật khẩu"
+                    title="Hiện/Ẩn mật khẩu"
+                  >
+                    <i class="bi bi-eye"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Nút đăng nhập -->
+              <div class="d-grid mb-4">
+                <button type="submit" class="btn btn-mm-primary">
+                  Đăng nhập
+                </button>
+              </div>
+            </form>
+
+            <!-- Điều hướng phụ -->
+            <div class="text-center pt-3 border-top" style="border-color: var(--mm-border) !important;">
+              <div class="mb-3">
+                <span class="mm-subtitle small">Chưa có tài khoản?</span>
+                <a href="/auth/register" class="mm-link small ms-1">
+                  Đăng ký ngay
+                </a>
+              </div>
+              <a href="/tra-cuu-ve" class="btn btn-mm-ghost w-100 py-2">
+                <i class="bi bi-ticket-perforated me-1"></i>Tra cứu vé bằng mã đặt chỗ
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hộp Tài khoản Demo tối giản (Dành cho Giảng viên / Kiểm thử) -->
+        <div class="card mm-card">
+          <div class="card-body p-3 p-md-4">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h2 class="small fw-semibold mm-title mb-0">
+                Tài khoản mẫu (Demo nhanh 3 vai trò)
+              </h2>
+              <span class="small mm-subtitle" style="font-size: 0.75rem;">Mật khẩu: <code>123456</code></span>
+            </div>
+            <p class="mm-subtitle mb-3" style="font-size: 0.78rem;">
+              Chọn nhanh một vai trò từ <code>02_seed_data.sql</code> để điền vào biểu mẫu:
+            </p>
+
+            <div class="d-grid gap-2">
+              <button
+                type="button"
+                class="btn mm-demo-row text-start d-flex justify-content-between align-items-center py-2 px-3 demo-fill-btn"
+                data-email="admin@futabus.vn"
+                data-password="123456"
+              >
+                <span class="d-flex align-items-center gap-2">
+                  <span class="mm-dot" style="background-color: #DC2626;"></span>
+                  <span><strong>Quản trị viên:</strong> <code style="color: #475569;">admin@futabus.vn</code></span>
+                </span>
+                <span class="mm-demo-action">Điền nhanh</span>
+              </button>
+
+              <button
+                type="button"
+                class="btn mm-demo-row text-start d-flex justify-content-between align-items-center py-2 px-3 demo-fill-btn"
+                data-email="staff@futabus.vn"
+                data-password="123456"
+              >
+                <span class="d-flex align-items-center gap-2">
+                  <span class="mm-dot" style="background-color: #D97706;"></span>
+                  <span><strong>Nhân viên:</strong> <code style="color: #475569;">staff@futabus.vn</code></span>
+                </span>
+                <span class="mm-demo-action">Điền nhanh</span>
+              </button>
+
+              <button
+                type="button"
+                class="btn mm-demo-row text-start d-flex justify-content-between align-items-center py-2 px-3 demo-fill-btn"
+                data-email="khach1@gmail.com"
+                data-password="123456"
+              >
+                <span class="d-flex align-items-center gap-2">
+                  <span class="mm-dot" style="background-color: #16A34A;"></span>
+                  <span><strong>Hành khách:</strong> <code style="color: #475569;">khach1@gmail.com</code></span>
+                </span>
+                <span class="mm-demo-action">Điền nhanh</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  (function () {
+    const toggleButtons = document.querySelectorAll('.toggle-password');
+    toggleButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const targetId = btn.getAttribute('data-target');
+        const input = document.getElementById(targetId);
+        const icon = btn.querySelector('i');
+        if (!input) return;
+
+        if (input.type === 'password') {
+          input.type = 'text';
+          if (icon) {
+            icon.classList.remove('bi-eye');
+            icon.classList.add('bi-eye-slash');
+          }
+        } else {
+          input.type = 'password';
+          if (icon) {
+            icon.classList.remove('bi-eye-slash');
+            icon.classList.add('bi-eye');
+          }
+        }
+      });
+    });
+
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const demoButtons = document.querySelectorAll('.demo-fill-btn');
+
+    demoButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const demoEmail = btn.getAttribute('data-email');
+        const demoPassword = btn.getAttribute('data-password');
+        if (emailInput && demoEmail) {
+          emailInput.value = demoEmail;
+        }
+        if (passwordInput && demoPassword) {
+          passwordInput.value = demoPassword;
+        }
+        if (emailInput) {
+          emailInput.focus();
+        }
+      });
+    });
+  })();
+</script>
 <%- include('../layouts/customer-footer') %>
