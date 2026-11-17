@@ -1,0 +1,9 @@
+booking_code,passenger_email,passenger_name,passenger_phone,seat_codes,total_amount,status,refund_amount,ticket_status,note
+BT2601,khach1@gmail.com,Nguyễn Văn Khách,0912345678,A01;A02,700000,pending,0,held,Đơn giữ chỗ chờ thanh toán (cho phép hủy vé)
+BT2602,khach1@gmail.com,Nguyễn Văn Khách,0912345678,A03;A04,700000,paid,0,paid,Đơn đã thanh toán trước giờ khởi hành >= 24h (cho phép hủy vé)
+BT2603,khach1@gmail.com,Nguyễn Văn Khách,0912345678,B01,350000,paid,0,paid,Đơn đã thanh toán nhưng sát giờ khởi hành < 24h (khóa nút hủy)
+BT2604,khach1@gmail.com,Nguyễn Văn Khách,0912345678,A05,320000,checked_in,0,checked_in,Đơn đã soát vé lên xe (checked_in)
+BT2605,khach1@gmail.com,Nguyễn Văn Khách,0912345678,B05,350000,cancelled,350000,cancelled,Đơn đã hủy và hoàn tiền 100% (cancelled)
+BT2606,khach1@gmail.com,Nguyễn Văn Khách,0912345678,B06,320000,expired,0,expired,Đơn hết hạn thanh toán sau 10 phút giữ ghế (expired)
+BT2607,mai.pham@gmail.com,Phạm Thị Mai,0905111222,A07;A08,640000,paid,0,paid,Đơn đặt vé mẫu Kaggle của Phạm Thị Mai
+BT2608,duc.hoang@gmail.com,Hoàng Văn Đức,0905222333,B03,350000,pending,0,held,Đơn đặt vé mẫu Kaggle của Hoàng Văn Đức

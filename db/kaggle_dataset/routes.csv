@@ -1,0 +1,11 @@
+route_id,name,origin_province,destination_province,distance_km,duration_hours,base_price,description,is_active
+1,TP. Hồ Chí Minh - Đà Lạt,TP. Hồ Chí Minh,Lâm Đồng,305,6.5,320000,"Tuyến cao tốc Dầu Giây - Bảo Lộc - Đà Lạt, xe giường nằm Limousine cao cấp.",true
+2,TP. Hồ Chí Minh - Nha Trang,TP. Hồ Chí Minh,Khánh Hòa,430,8.0,380000,"Chạy cao tốc Phan Thiết - Vĩnh Hảo - Cam Lâm rút ngắn thời gian di chuyển.",true
+3,TP. Hồ Chí Minh - Cần Thơ,TP. Hồ Chí Minh,Cần Thơ,170,3.5,180000,"Tuyến cao tốc Trung Lương - Mỹ Thuận - Cần Thơ khởi hành mỗi 30 phút.",true
+4,TP. Hồ Chí Minh - Vũng Tàu,TP. Hồ Chí Minh,Bà Rịa - Vũng Tàu,115,2.5,160000,"Tuyến cao tốc Long Thành - Quốc lộ 51 đi trung tâm TP. Vũng Tàu.",true
+5,TP. Hồ Chí Minh - Phan Thiết,TP. Hồ Chí Minh,Bình Thuận,195,3.0,210000,"Tuyến cao tốc Dầu Giây - Phan Thiết chỉ 3 tiếng di chuyển.",true
+6,Đà Lạt - TP. Hồ Chí Minh,Lâm Đồng,TP. Hồ Chí Minh,305,6.5,320000,"Chiều về Đà Lạt - Bảo Lộc - Cao tốc Dầu Giây - TP. Hồ Chí Minh.",true
+7,Nha Trang - TP. Hồ Chí Minh,Khánh Hòa,TP. Hồ Chí Minh,430,8.0,380000,"Chiều về Nha Trang - Cao tốc Cam Lâm - Vĩnh Hảo - TP. Hồ Chí Minh.",true
+8,Cần Thơ - TP. Hồ Chí Minh,Cần Thơ,TP. Hồ Chí Minh,170,3.5,180000,"Chiều về Bến xe Trung tâm Cần Thơ - Cao tốc Mỹ Thuận - Bến xe Miền Tây.",true
+9,Đà Nẵng - Huế,Đà Nẵng,Thừa Thiên Huế,105,2.5,150000,"Tuyến liên tỉnh miền Trung qua hầm Hải Vân - Bến xe Phía Nam Huế.",true
+10,Đà Nẵng - Quy Nhơn,Đà Nẵng,Bình Định,320,6.0,290000,"Tuyến Quốc lộ 1A - Cao tốc Đà Nẵng - Quảng Ngãi - Quy Nhơn.",true

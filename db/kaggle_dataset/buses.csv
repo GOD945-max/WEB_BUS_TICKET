@@ -1,0 +1,9 @@
+bus_id,license_plate,seat_layout_id,bus_type,amenities,status
+1,51B-289.01,1,Limousine 22 Phòng,"Wifi 5G, Màn hình TV riêng, Cổng sạc USB, Chăn gối, Nước suối",active
+2,51B-289.02,1,Limousine 22 Phòng,"Wifi 5G, Ghế Massage, Cổng sạc Type-C, Khăn lạnh, Nước suối",active
+3,51B-340.11,2,Giường Nằm 34 Chỗ,"Wifi, Điều hòa, Cổng sạc USB, Nước suối",active
+4,51B-340.12,2,Giường Nằm 34 Chỗ,"Wifi, Điều hòa, Cổng sạc USB, Nước suối",active
+5,51B-340.15,1,Limousine 22 Phòng,"Wifi 5G, Màn hình giải trí, Cổng sạc USB",active
+6,51B-999.88,2,Giường Nằm 34 Chỗ,"Wifi, Điều hòa",maintenance
+7,43B-556.12,3,Ghế Ngồi Limousine 16 Chỗ,"Wifi 5G, Ghế da cao cấp, Nước suối, Khăn lạnh",active
+8,65B-088.99,2,Giường Nằm 34 Chỗ,"Wifi, Điều hòa, Chăn đắp, Cổng sạc USB",active

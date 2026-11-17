@@ -1,0 +1,15 @@
+trip_code,route_id,bus_id,day_offset,departure_hour,duration_hours,ticket_price,status
+TRIP_KAG_01,1,1,1,7,6.5,350000,active
+TRIP_KAG_02,1,3,1,22,6.5,320000,active
+TRIP_KAG_03,1,2,2,8,6.5,350000,active
+TRIP_KAG_04,2,5,1,20,8.0,420000,active
+TRIP_KAG_05,2,4,1,21.5,8.0,380000,active
+TRIP_KAG_06,2,1,2,20,8.0,420000,active
+TRIP_KAG_07,3,3,1,6,3.5,180000,active
+TRIP_KAG_08,3,4,1,14,3.5,180000,active
+TRIP_KAG_09,4,2,1,7.5,2.5,160000,active
+TRIP_KAG_10,4,5,1,15,2.5,160000,active
+TRIP_KAG_11,5,3,1,8,3.0,210000,active
+TRIP_KAG_12,5,4,1,16,3.0,210000,active
+TRIP_KAG_13,6,1,2,13,6.5,350000,active
+TRIP_KAG_14,9,7,2,8,2.5,150000,active

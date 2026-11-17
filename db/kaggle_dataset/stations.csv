@@ -1,0 +1,13 @@
+station_id,name,province,address,is_main_station,is_active
+1,Bến xe Miền Đông Mới,TP. Hồ Chí Minh,"501 Hoàng Hữu Nam, TP. Thủ Đức, TP.HCM",true,true
+2,Bến xe Miền Tây,TP. Hồ Chí Minh,"395 Kinh Dương Vương, Bình Tân, TP.HCM",true,true
+3,VP Hàng Xanh,TP. Hồ Chí Minh,"486H Điện Biên Phủ, Bình Thạnh, TP.HCM",false,true
+4,Bến xe Liên tỉnh Đà Lạt,Lâm Đồng,"01 Tô Hiến Thành, Phường 3, TP. Đà Lạt",true,true
+5,VP Bảo Lộc,Lâm Đồng,"280 Trần Phú, TP. Bảo Lộc, Lâm Đồng",false,true
+6,Bến xe Phía Nam Nha Trang,Khánh Hòa,"Km6 Đường 23/10, Vĩnh Trung, Nha Trang",true,true
+7,Bến xe Trung tâm Đà Nẵng,Đà Nẵng,"Tôn Đức Thắng, Hòa Minh, Liên Chiểu, Đà Nẵng",true,true
+8,Bến xe Trung tâm Cần Thơ,Cần Thơ,"QL1A, Hưng Thạnh, Cái Răng, Cần Thơ",true,true
+9,Bến xe Vũng Tàu,Bà Rịa - Vũng Tàu,"192 Nam Kỳ Khởi Nghĩa, Phường 3, TP. Vũng Tàu",true,true
+10,Bến xe Phan Thiết,Bình Thuận,"01 Từ Văn Tư, Phú Thủy, TP. Phan Thiết",true,true
+11,Bến xe Phía Nam Huế,Thừa Thiên Huế,"97 An Dương Vương, Phường An Đông, TP. Huế",true,true
+12,Bến xe Trung tâm Quy Nhơn,Bình Định,"71 Tây Sơn, Phường Ghềnh Ráng, TP. Quy Nhơn",true,true

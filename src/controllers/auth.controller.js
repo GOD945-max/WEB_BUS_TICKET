@@ -1755,11 +1755,16 @@ async function importUsersCsv(req, res, next) {
       return res.redirect('/admin/users');
     }
 
-    const importedUsers = await userModel.importUsersFromCsvRows(parsedRows, defaultPasswordHash);
-    const successMsg = `Đã nhập / đồng bộ thành công ${importedUsers.length} tài khoản từ CSV chuẩn Kaggle (mật khẩu mặc định cho tài khoản mới: 123456).`;
+    const importedResult = await userModel.importUsersFromCsvRows(parsedRows, defaultPasswordHash);
+    const importedCount = Array.isArray(importedResult)
+      ? importedResult.length
+      : (importedResult && typeof importedResult.importedCount === 'number'
+          ? importedResult.importedCount
+          : (importedResult && Array.isArray(importedResult.users) ? importedResult.users.length : 0));
+    const successMsg = `Đã nhập / đồng bộ thành công ${importedCount} tài khoản từ CSV chuẩn Kaggle (mật khẩu mặc định cho tài khoản mới: 123456).`;
 
     if (isAjaxOrJsonRequest(req)) {
-      return res.json({ success: true, message: successMsg, count: importedUsers.length });
+      return res.json({ success: true, message: successMsg, count: importedCount });
     }
     if (req.session) {
       req.session.successMsg = successMsg;
@@ -1789,13 +1794,13 @@ async function exportMyBookingsCsv(req, res, next) {
     const bookings = await userModel.getBookingHistoryByUserId(sessionUser.id);
     const headers = [
       'booking_code',
-      'origin_city',
-      'destination_city',
+      'origin_province',
+      'destination_province',
       'departure_time',
       'arrival_time',
       'bus_type',
       'license_plate',
-      'seat_numbers',
+      'seat_codes',
       'total_amount',
       'status',
       'created_at',
@@ -1803,13 +1808,19 @@ async function exportMyBookingsCsv(req, res, next) {
     const csvRows = [headers.join(',')];
 
     for (const b of bookings) {
-      const seatList = Array.isArray(b.seat_numbers)
-        ? b.seat_numbers.join(';')
-        : (Array.isArray(b.tickets) ? b.tickets.map((t) => t.seat_number).join(';') : '');
+      const originProvince = b.origin_province || b.origin_city || '';
+      const destinationProvince = b.destination_province || b.destination_city || '';
+      const seatList = b.seat_codes
+        ? String(b.seat_codes)
+        : Array.isArray(b.seat_list)
+          ? b.seat_list.join(';')
+          : Array.isArray(b.seat_numbers)
+            ? b.seat_numbers.join(';')
+            : '';
       csvRows.push([
         escapeCsvField(b.booking_code),
-        escapeCsvField(b.origin_city),
-        escapeCsvField(b.destination_city),
+        escapeCsvField(originProvince),
+        escapeCsvField(destinationProvince),
         escapeCsvField(b.departure_time ? new Date(b.departure_time).toISOString() : ''),
         escapeCsvField(b.arrival_time ? new Date(b.arrival_time).toISOString() : ''),
         escapeCsvField(b.bus_type),
