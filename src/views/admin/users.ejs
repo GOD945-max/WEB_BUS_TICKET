@@ -1,2 +1,676 @@
-<!-- [TV1 - Nhóm 1] Giao diện Admin Quản lý người dùng & Phân quyền -->
 <%- include('../layouts/admin-layout') %>
+<!-- [TV1 - Nhóm 1: Tài khoản, xác thực và bảo mật] Giao diện Admin Quản lý người dùng & Phân quyền (Modern Minimalist) -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+<style>
+  :root {
+    --mm-bg: #F8FAFC;
+    --mm-surface: #FFFFFF;
+    --mm-border: #E2E8F0;
+    --mm-input-border: #CBD5E1;
+    --mm-text: #0F172A;
+    --mm-muted: #64748B;
+    --mm-accent: #EA580C;
+    --mm-accent-hover: #C2410C;
+    --mm-accent-soft: #FFF7ED;
+  }
+  body {
+    background-color: var(--mm-bg) !important;
+    color: var(--mm-text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .text-primary {
+    color: var(--mm-text) !important;
+  }
+  .mm-card {
+    background-color: var(--mm-surface);
+    border: 1px solid var(--mm-border);
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+  }
+  .mm-title {
+    color: var(--mm-text);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  .mm-subtitle {
+    color: var(--mm-muted);
+  }
+  .mm-num {
+    font-variant-numeric: tabular-nums;
+  }
+  .mm-nav-strip {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 0.9rem;
+  }
+  .mm-nav .nav-link {
+    color: var(--mm-muted);
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 0.38rem 0.75rem;
+    font-size: 0.85rem;
+    transition: all 0.15s ease;
+  }
+  .mm-nav .nav-link:hover {
+    color: var(--mm-text);
+    background-color: #F1F5F9;
+  }
+  .mm-nav .nav-link.active {
+    background-color: var(--mm-accent-soft);
+    color: var(--mm-accent);
+    border: 1px solid #FED7AA;
+    font-weight: 600;
+  }
+  .mm-label {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #334155;
+    margin-bottom: 0.35rem;
+  }
+  .mm-control, .mm-select {
+    border: 1px solid var(--mm-border);
+    border-radius: 10px;
+    color: var(--mm-text);
+    background-color: #FFFFFF;
+    padding: 0.58rem 0.85rem;
+    font-size: 0.875rem;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  }
+  .mm-control:hover, .mm-select:hover {
+    border-color: var(--mm-input-border);
+  }
+  .mm-control:focus, .mm-select:focus {
+    border-color: var(--mm-accent);
+    box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.12);
+    outline: none;
+  }
+  .mm-select-sm {
+    border: 1px solid var(--mm-border);
+    border-radius: 8px;
+    font-size: 0.8125rem;
+    color: var(--mm-text);
+  }
+  .mm-select-sm:focus {
+    border-color: var(--mm-accent);
+    box-shadow: 0 0 0 2px rgba(234, 88, 12, 0.12);
+  }
+  .btn-mm-primary {
+    background-color: var(--mm-accent);
+    border: 1px solid var(--mm-accent);
+    color: #FFFFFF;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+  .btn-mm-primary:hover, .btn-mm-primary:focus {
+    background-color: var(--mm-accent-hover);
+    border-color: var(--mm-accent-hover);
+    color: #FFFFFF;
+  }
+  .btn-mm-outline {
+    background-color: #FFFFFF;
+    border: 1px solid var(--mm-border);
+    color: #334155;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  .btn-mm-outline:hover {
+    background-color: #F8FAFC;
+    border-color: var(--mm-input-border);
+    color: var(--mm-text);
+  }
+  .mm-pill {
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.72rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid transparent;
+  }
+  .mm-pill-success { background-color: #DCFCE7 !important; color: #166534 !important; border-color: #BBF7D0; }
+  .mm-pill-warning { background-color: #FEF3C7 !important; color: #92400E !important; border-color: #FDE68A; }
+  .mm-pill-danger { background-color: #FEE2E2 !important; color: #991B1B !important; border-color: #FECACA; }
+  .mm-pill-info { background-color: #E0F2FE !important; color: #075985 !important; border-color: #BAE6FD; }
+  .mm-pill-primary { background-color: #FFF7ED !important; color: #EA580C !important; border-color: #FED7AA; }
+  .mm-table {
+    margin-bottom: 0;
+  }
+  .mm-table thead th {
+    background-color: #F8FAFC;
+    color: var(--mm-muted);
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid var(--mm-border);
+    border-top: 0;
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+  }
+  .mm-table tbody td {
+    border-bottom: 1px solid #F1F5F9;
+    padding-top: 0.95rem;
+    padding-bottom: 0.95rem;
+    color: var(--mm-text);
+  }
+  .mm-table tbody tr:last-child td {
+    border-bottom: 0;
+  }
+  .mm-table tbody tr:hover {
+    background-color: #F8FAFC;
+  }
+  .mm-table tbody tr.mm-row-self {
+    background-color: #FFF7ED;
+  }
+  .mm-alert {
+    border: 1px solid var(--mm-border);
+    border-left-width: 3px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+  }
+  .mm-alert-danger {
+    background-color: #FEF2F2;
+    border-color: #FECACA;
+    border-left-color: #DC2626;
+    color: #991B1B;
+  }
+  .mm-alert-success {
+    background-color: #ECFDF5;
+    border-color: #A7F3D0;
+    border-left-color: #16A34A;
+    color: #166534;
+  }
+</style>
+
+<%
+  const rawErrors = (typeof errors !== 'undefined' && errors)
+    ? (Array.isArray(errors) ? errors.filter(Boolean).join(' ') : String(errors))
+    : null;
+  const alertError = (typeof error !== 'undefined' && error)
+    ? error
+    : ((typeof errorMsg !== 'undefined' && errorMsg) ? errorMsg : rawErrors);
+  const alertSuccess = (typeof success !== 'undefined' && success)
+    ? success
+    : ((typeof successMsg !== 'undefined' && successMsg) ? successMsg : null);
+
+  const userList = (typeof users !== 'undefined' && Array.isArray(users)) ? users : [];
+  const f = (typeof filters !== 'undefined' && filters) ? filters : {};
+  const filterKeyword = String(f.keyword !== undefined ? f.keyword : (typeof keyword !== 'undefined' ? keyword : '')).trim();
+  const filterRole = String(f.role !== undefined ? f.role : (typeof role !== 'undefined' ? role : '')).trim().toLowerCase();
+  const filterStatus = String(f.status !== undefined ? f.status : (typeof status !== 'undefined' ? status : '')).trim().toLowerCase();
+  const hasActiveFilter = Boolean(filterKeyword || filterRole || filterStatus);
+
+  const adminIdRaw = (typeof currentAdminId !== 'undefined' && currentAdminId !== null)
+    ? currentAdminId
+    : ((typeof currentUser !== 'undefined' && currentUser && currentUser.id) ? currentUser.id : null);
+  const parsedAdminId = (adminIdRaw !== null && adminIdRaw !== '') ? parseInt(adminIdRaw, 10) : null;
+
+  function toBool(val) {
+    return val === true || val === 't' || val === 'true' || val === 1 || val === '1';
+  }
+
+  function fmtDate(value) {
+    if (!value) return '—';
+    const d = new Date(value);
+    if (isNaN(d.getTime())) return '—';
+    return d.toLocaleDateString('vi-VN', {
+      timeZone: 'Asia/Ho_Chi_Minh',
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    });
+  }
+
+  const rawStats = (typeof stats !== 'undefined' && stats) ? stats : null;
+  const totalUsersCount = (rawStats && typeof rawStats.total === 'number') ? rawStats.total : userList.length;
+  const activeUsersCount = (rawStats && typeof rawStats.active === 'number')
+    ? rawStats.active
+    : userList.filter(function (u) { return toBool(u.is_active); }).length;
+  const lockedUsersCount = (rawStats && typeof rawStats.locked === 'number')
+    ? rawStats.locked
+    : userList.filter(function (u) { return !toBool(u.is_active); }).length;
+  const adminUsersCount = (rawStats && typeof rawStats.adminCount === 'number')
+    ? rawStats.adminCount
+    : userList.filter(function (u) { return String(u.role || '').toLowerCase() === 'admin'; }).length;
+  const staffUsersCount = (rawStats && typeof rawStats.staffCount === 'number')
+    ? rawStats.staffCount
+    : userList.filter(function (u) { return String(u.role || '').toLowerCase() === 'staff'; }).length;
+  const staffAndAdminCount = adminUsersCount + staffUsersCount;
+
+  const roleLabels = {
+    customer: { label: 'Khách hàng',    css: 'badge bg-info text-dark mm-pill mm-pill-info' },
+    staff:    { label: 'Nhân viên',     css: 'badge bg-warning text-dark mm-pill mm-pill-warning' },
+    admin:    { label: 'Quản trị viên', css: 'badge bg-danger mm-pill mm-pill-danger' }
+  };
+%>
+
+<main class="container pb-5 pt-1">
+  <!-- Thanh điều hướng gọn nhẹ -->
+  <div class="card mm-card mb-4">
+    <div class="mm-nav-strip">
+      <ul class="nav mm-nav gap-1 flex-nowrap overflow-auto">
+        <li class="nav-item"><a class="nav-link text-nowrap" href="/admin/dashboard">Tổng quan</a></li>
+        <li class="nav-item"><a class="nav-link active text-nowrap" aria-current="page" href="/admin/users">Người dùng</a></li>
+        <li class="nav-item"><a class="nav-link text-nowrap" href="/admin/bookings">Đặt vé</a></li>
+        <li class="nav-item"><a class="nav-link text-nowrap" href="/admin/trips">Chuyến xe</a></li>
+        <li class="nav-item"><a class="nav-link text-nowrap" href="/admin/routes">Tuyến xe</a></li>
+        <li class="nav-item"><a class="nav-link text-nowrap" href="/admin/stations">Bến xe</a></li>
+        <li class="nav-item"><a class="nav-link text-nowrap" href="/admin/buses">Đội xe</a></li>
+      </ul>
+
+      <div class="d-flex align-items-center gap-2 flex-shrink-0">
+        <a href="/auth/profile" class="btn btn-mm-outline btn-sm text-nowrap px-3">Hồ sơ</a>
+        <a href="/" class="btn btn-mm-outline btn-sm text-nowrap px-3">Trang chủ</a>
+        <form method="POST" action="/auth/logout" class="d-inline">
+          <button type="submit" class="btn btn-outline-danger btn-sm text-nowrap px-3" style="border-radius: 10px;">
+            Đăng xuất
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thông báo lỗi / thành công -->
+  <% if (alertError) { %>
+    <div class="alert alert-danger alert-dismissible fade show mm-alert mm-alert-danger mb-4" role="alert">
+      <span><%= alertError %></span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+    </div>
+  <% } %>
+  <% if (alertSuccess) { %>
+    <div class="alert alert-success alert-dismissible fade show mm-alert mm-alert-success mb-4" role="alert">
+      <span><%= alertSuccess %></span>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Đóng"></button>
+    </div>
+  <% } %>
+
+  <!-- ===== PHẦN 1: 4 THẺ THỐNG KÊ NHANH (KPI CARDS) ===== -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-sm-6 col-xl-3">
+      <div class="card mm-card h-100">
+        <div class="card-body p-4">
+          <div class="mm-subtitle small mb-2">Tổng số người dùng</div>
+          <div class="h2 mm-title mm-num mb-1"><%= totalUsersCount %></div>
+          <div class="mm-subtitle" style="font-size: 0.78rem;">
+            <%= hasActiveFilter ? 'Theo điều kiện lọc' : 'Toàn hệ thống' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-3">
+      <div class="card mm-card h-100">
+        <div class="card-body p-4">
+          <div class="mm-subtitle small mb-2">Đang hoạt động</div>
+          <div class="h2 fw-semibold mm-num text-success mb-1"><%= activeUsersCount %></div>
+          <div class="mm-subtitle" style="font-size: 0.78rem;">Tài khoản hợp lệ</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-3">
+      <div class="card mm-card h-100">
+        <div class="card-body p-4">
+          <div class="mm-subtitle small mb-2">Đã bị khóa</div>
+          <div class="h2 fw-semibold mm-num text-danger mb-1"><%= lockedUsersCount %></div>
+          <div class="mm-subtitle" style="font-size: 0.78rem;">Ngưng quyền truy cập</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-xl-3">
+      <div class="card mm-card h-100">
+        <div class="card-body p-4">
+          <div class="mm-subtitle small mb-2">Nhân viên &amp; Quản trị viên</div>
+          <div class="h2 fw-semibold mm-num mb-1" style="color: var(--mm-accent);"><%= staffAndAdminCount %></div>
+          <div class="mm-subtitle" style="font-size: 0.78rem;">
+            Quản trị: <strong><%= adminUsersCount %></strong> · Nhân viên: <strong><%= staffUsersCount %></strong>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PHẦN 2: THANH TÌM KIẾM & BỘ LỌC (GET /admin/users) ===== -->
+  <div class="card mm-card mb-4">
+    <div class="card-body p-4">
+      <form id="userFilterForm" method="GET" action="/admin/users" class="row g-3 align-items-end">
+        <div class="col-12 col-lg-4">
+          <label for="keyword" class="form-label mm-label">
+            Tìm kiếm theo Họ tên, Email hoặc SĐT
+          </label>
+          <input
+            type="text"
+            class="form-control mm-control"
+            id="keyword"
+            name="keyword"
+            placeholder="Nhập tên, email hoặc số điện thoại..."
+            value="<%= filterKeyword %>"
+          />
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+          <label for="roleFilter" class="form-label mm-label">Vai trò</label>
+          <select class="form-select mm-select" id="roleFilter" name="role">
+            <option value="" <%= filterRole === '' ? 'selected' : '' %>>Tất cả</option>
+            <option value="customer" <%= filterRole === 'customer' ? 'selected' : '' %>>Khách hàng</option>
+            <option value="staff" <%= filterRole === 'staff' ? 'selected' : '' %>>Nhân viên</option>
+            <option value="admin" <%= filterRole === 'admin' ? 'selected' : '' %>>Quản trị viên</option>
+          </select>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-2">
+          <label for="statusFilter" class="form-label mm-label">Trạng thái</label>
+          <select class="form-select mm-select" id="statusFilter" name="status">
+            <option value="" <%= filterStatus === '' ? 'selected' : '' %>>Tất cả</option>
+            <option value="active" <%= filterStatus === 'active' ? 'selected' : '' %>>Đang hoạt động</option>
+            <option value="locked" <%= filterStatus === 'locked' ? 'selected' : '' %>>Đã bị khóa</option>
+          </select>
+        </div>
+
+        <div class="col-12 col-lg-3 d-flex flex-wrap gap-2">
+          <button type="submit" class="btn btn-mm-primary flex-grow-1 py-2">
+            Tìm kiếm / Lọc
+          </button>
+          <a href="/admin/users" class="btn btn-mm-outline py-2 px-3">
+            Đặt lại
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== PHẦN 3: BẢNG DANH SÁCH NGƯỜI DÙNG & THAO TÁC QUẢN TRỊ ===== -->
+  <div class="card mm-card overflow-hidden">
+    <div class="card-header bg-white py-3 px-4 d-flex flex-wrap justify-content-between align-items-center gap-2"
+         style="border-bottom: 1px solid #F1F5F9;">
+      <div>
+        <h2 class="h5 mm-title mb-0">Danh sách tài khoản người dùng</h2>
+        <p class="mm-subtitle small mb-0">
+          Phân quyền 3 vai trò và kiểm soát trạng thái truy cập hệ thống.
+        </p>
+      </div>
+      <div class="d-flex flex-wrap align-items-center gap-2">
+        <a href="/admin/users/export-csv" class="btn btn-mm-outline btn-sm px-3 py-1">
+          <i class="bi bi-download me-1"></i>Xuất CSV
+        </a>
+        <button type="button" class="btn btn-mm-primary btn-sm px-3 py-1" data-bs-toggle="modal" data-bs-target="#kaggleCsvModal">
+          <i class="bi bi-database-add me-1"></i>Đồng bộ / Nhập CSV (Kaggle)
+        </button>
+        <span class="badge bg-primary mm-pill mm-pill-primary mm-num">
+          Hiển thị: <%= userList.length %> tài khoản
+        </span>
+      </div>
+    </div>
+
+    <% if (userList.length === 0) { %>
+      <div class="card-body text-center py-5">
+        <i class="bi bi-person-x mm-subtitle" style="font-size: 2.75rem;"></i>
+        <h3 class="h5 mm-title mt-3">Không tìm thấy người dùng phù hợp</h3>
+        <p class="mm-subtitle small mb-4">
+          <%= hasActiveFilter
+            ? 'Không có tài khoản nào khớp với từ khóa hoặc bộ lọc hiện tại.'
+            : 'Hiện chưa có dữ liệu tài khoản người dùng nào trong hệ thống.' %>
+        </p>
+        <% if (hasActiveFilter) { %>
+          <a href="/admin/users" class="btn btn-mm-outline px-4 py-2">
+            Đặt lại bộ lọc
+          </a>
+        <% } %>
+      </div>
+    <% } else { %>
+      <div class="table-responsive">
+        <table class="table align-middle mm-table">
+          <thead class="text-uppercase">
+            <tr>
+              <th scope="col" class="ps-4">ID</th>
+              <th scope="col">Họ và tên</th>
+              <th scope="col">Email &amp; SĐT</th>
+              <th scope="col">Xác thực Email</th>
+              <th scope="col">Trạng thái Tài khoản</th>
+              <th scope="col" style="min-width: 230px;">Phân quyền / Đổi Vai trò</th>
+              <th scope="col" class="pe-4 text-end">Khóa / Mở khóa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% userList.forEach(function (u) {
+                 const parsedUid = parseInt(u.id, 10);
+                 const isSelf = Number.isInteger(parsedAdminId) && Number.isInteger(parsedUid) && parsedAdminId === parsedUid;
+                 const uRole = String(u.role || 'customer').trim().toLowerCase();
+                 const rInfo = roleLabels[uRole] || roleLabels.customer;
+                 const isVerified = toBool(u.is_verified);
+                 const isActive = toBool(u.is_active);
+                 const fullNameText = String(u.full_name || 'Chưa cập nhật').trim();
+                 const nameTokens = fullNameText.split(/\s+/).filter(Boolean);
+                 const initialChar = nameTokens.length ? nameTokens[nameTokens.length - 1].charAt(0).toUpperCase() : 'U';
+            %>
+              <tr class="<%= isSelf ? 'mm-row-self' : '' %>">
+                <td class="ps-4 fw-semibold mm-subtitle font-monospace text-nowrap">
+                  #<%= u.id %>
+                </td>
+
+                <td>
+                  <div class="d-flex align-items-center gap-3">
+                    <div class="rounded-circle fw-semibold d-inline-flex align-items-center justify-content-center flex-shrink-0"
+                         style="width: 36px; height: 36px; font-size: 0.85rem; background-color: var(--mm-accent-soft); color: var(--mm-accent); border: 1px solid #FED7AA;"
+                         aria-hidden="true">
+                      <%= initialChar %>
+                    </div>
+                    <div>
+                      <div class="fw-semibold d-flex align-items-center flex-wrap gap-1" style="color: var(--mm-text);">
+                        <span><%= fullNameText %></span>
+                        <% if (isSelf) { %>
+                          <span class="badge bg-primary mm-pill mm-pill-primary">Bạn</span>
+                        <% } %>
+                      </div>
+                      <div class="d-flex align-items-center flex-wrap gap-2 mt-1">
+                        <span class="<%= rInfo.css %>"><%= rInfo.label %></span>
+                        <small class="mm-subtitle">Tham gia: <%= fmtDate(u.created_at) %></small>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+
+                <td>
+                  <div class="fw-medium small text-break" style="color: var(--mm-text);">
+                    <%= u.email || '—' %>
+                  </div>
+                  <div class="small mm-subtitle mt-1">
+                    <%= u.phone || 'Chưa cập nhật' %>
+                  </div>
+                </td>
+
+                <td class="text-nowrap">
+                  <% if (isVerified) { %>
+                    <span class="badge bg-success mm-pill mm-pill-success">Đã xác thực</span>
+                  <% } else { %>
+                    <span class="badge bg-warning text-dark mm-pill mm-pill-warning">Chưa xác thực</span>
+                  <% } %>
+                </td>
+
+                <td class="text-nowrap">
+                  <% if (isActive) { %>
+                    <span class="badge bg-success mm-pill mm-pill-success">Đang hoạt động</span>
+                  <% } else { %>
+                    <span class="badge bg-danger mm-pill mm-pill-danger">Đã khóa</span>
+                  <% } %>
+                </td>
+
+                <td>
+                  <form method="POST" action="/admin/users/<%= u.id %>/role" class="d-flex align-items-center gap-2 role-change-form">
+                    <select
+                      name="role"
+                      class="form-select form-select-sm mm-select-sm"
+                      aria-label="Chọn vai trò cho tài khoản <%= u.email %>"
+                      <%= isSelf ? 'disabled' : '' %>
+                    >
+                      <option value="customer" <%= uRole === 'customer' ? 'selected' : '' %>>Khách hàng</option>
+                      <option value="staff" <%= uRole === 'staff' ? 'selected' : '' %>>Nhân viên</option>
+                      <option value="admin" <%= uRole === 'admin' ? 'selected' : '' %>>Quản trị viên</option>
+                    </select>
+                    <button
+                      type="submit"
+                      class="btn btn-mm-outline btn-sm text-nowrap px-3"
+                      <%= isSelf ? 'disabled aria-disabled="true" title="Bạn không thể tự thay đổi quyền Quản trị viên của chính mình"' : '' %>
+                    >
+                      Đổi quyền
+                    </button>
+                  </form>
+                </td>
+
+                <td class="pe-4 text-end text-nowrap">
+                  <form
+                    method="POST"
+                    action="/admin/users/<%= u.id %>/toggle-active"
+                    class="d-inline toggle-active-form"
+                    data-email="<%= u.email || fullNameText %>"
+                    data-active="<%= isActive ? 'true' : 'false' %>"
+                  >
+                    <% if (isActive) { %>
+                      <button
+                        type="submit"
+                        class="btn btn-outline-danger btn-sm fw-semibold px-3"
+                        style="border-radius: 8px;"
+                        <%= isSelf ? 'disabled aria-disabled="true" title="Bạn không thể tự khóa tài khoản của chính mình"' : '' %>
+                      >
+                        Khóa
+                      </button>
+                    <% } else { %>
+                      <button
+                        type="submit"
+                        class="btn btn-outline-success btn-sm fw-semibold px-3"
+                        style="border-radius: 8px;"
+                        <%= isSelf ? 'disabled aria-disabled="true" title="Bạn không thể tự thao tác tài khoản của chính mình"' : '' %>
+                      >
+                        Mở khóa
+                      </button>
+                    <% } %>
+                  </form>
+                </td>
+              </tr>
+            <% }); %>
+          </tbody>
+        </table>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- ===== MODAL ĐỒNG BỘ DỮ LIỆU CHUẨN KAGGLE & NHẬP CSV ===== -->
+  <div class="modal fade" id="kaggleCsvModal" tabindex="-1" aria-labelledby="kaggleCsvModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content mm-card border-0">
+        <div class="modal-header bg-white px-4 py-3" style="border-bottom: 1px solid #E2E8F0;">
+          <div>
+            <div class="mm-eyebrow mb-1">TÍCH HỢP DỮ LIỆU CHUẨN KAGGLE (GTFS &amp; BUS DEMAND)</div>
+            <h3 class="h5 mm-title mb-0" id="kaggleCsvModalLabel">Đồng bộ &amp; Nhập dữ liệu CSV (Kaggle Dataset)</h3>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+        </div>
+        <div class="modal-body p-4">
+          <!-- Tùy chọn 1: Đồng bộ 1 chạm bộ dữ liệu chuẩn Kaggle -->
+          <div class="p-3 rounded-3 mb-4" style="background-color: #F8FAFC; border: 1px solid #E2E8F0;">
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3">
+              <div>
+                <h4 class="h6 mm-title mb-1">
+                  <i class="bi bi-cloud-check me-1 text-primary"></i>1. Đồng bộ toàn bộ Bộ dữ liệu mẫu chuẩn Kaggle (Khuyên dùng)
+                </h4>
+                <p class="mm-subtitle small mb-0">
+                  Tự động nạp danh sách hành khách chuẩn Kaggle, bổ sung điểm dừng trung gian (<code>trip_stops</code> theo chuẩn GTFS), lịch trình chuyến xe sát giờ (&lt; 24h) và bộ 6 đơn đặt vé mẫu đủ 5 trạng thái (<code>pending</code>, <code>paid</code>, <code>checked_in</code>, <code>cancelled</code>, <code>expired</code>).
+                </p>
+              </div>
+              <form method="POST" action="/admin/users/import-csv" class="flex-shrink-0">
+                <input type="hidden" name="mode" value="kaggle_preset">
+                <button type="submit" class="btn btn-mm-primary px-3 py-2 text-nowrap">
+                  <i class="bi bi-arrow-repeat me-1"></i>Đồng bộ Kaggle ngay
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <!-- Tùy chọn 2: Tải lên file CSV hoặc dán dữ liệu CSV -->
+          <form method="POST" action="/admin/users/import-csv">
+            <input type="hidden" name="mode" value="custom_csv">
+            <h4 class="h6 mm-title mb-2">
+              <i class="bi bi-filetype-csv me-1"></i>2. Nhập danh sách tài khoản từ tệp CSV tùy chỉnh
+            </h4>
+            <p class="mm-subtitle small mb-3">
+              Định dạng cột chuẩn: <code>full_name,email,phone,role,is_verified,is_active</code> (Mật khẩu mặc định cho tài khoản mới: <code>123456</code>).
+            </p>
+            <div class="mb-3">
+              <label for="kaggleCsvFileInput" class="form-label mm-label">Chọn tệp CSV từ máy tính (.csv)</label>
+              <input type="file" id="kaggleCsvFileInput" accept=".csv,text/csv" class="form-control mm-input">
+            </div>
+            <div class="mb-3">
+              <label for="kaggleCsvTextarea" class="form-label mm-label">Hoặc dán trực tiếp nội dung CSV chuẩn Kaggle</label>
+              <textarea
+                id="kaggleCsvTextarea"
+                name="csvData"
+                rows="5"
+                class="form-control mm-input font-monospace small"
+                placeholder="full_name,email,phone,role,is_verified,is_active&#10;Phạm Thị Mai,mai.pham@gmail.com,0905111222,customer,true,true&#10;Hoàng Văn Đức,duc.hoang@gmail.com,0905222333,customer,true,true"
+              ></textarea>
+            </div>
+            <div class="d-flex justify-content-end gap-2">
+              <button type="button" class="btn btn-mm-outline px-3 py-2" data-bs-dismiss="modal">Đóng</button>
+              <button type="submit" class="btn btn-mm-primary px-4 py-2">
+                <i class="bi bi-upload me-1"></i>Nhập dữ liệu CSV
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  (function () {
+    if (typeof window.bootstrap === 'undefined') {
+      var bsScript = document.createElement('script');
+      bsScript.src = 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js';
+      document.body.appendChild(bsScript);
+    }
+
+    var fileInput = document.getElementById('kaggleCsvFileInput');
+    var csvTextarea = document.getElementById('kaggleCsvTextarea');
+    if (fileInput && csvTextarea) {
+      fileInput.addEventListener('change', function (e) {
+        var file = e.target.files && e.target.files[0];
+        if (!file) return;
+        var reader = new FileReader();
+        reader.onload = function (evt) {
+          csvTextarea.value = evt.target.result || '';
+        };
+        reader.readAsText(file, 'UTF-8');
+      });
+    }
+
+    document.querySelectorAll('.toggle-active-form').forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        var email = form.getAttribute('data-email') || 'tài khoản này';
+        var isCurrentlyActive = form.getAttribute('data-active') === 'true';
+        var message = isCurrentlyActive
+          ? 'Bạn có chắc chắn muốn KHÓA tài khoản "' + email + '" không?\nNgười dùng này sẽ không thể tiếp tục đăng nhập hệ thống.'
+          : 'Bạn có chắc chắn muốn MỞ KHÓA tài khoản "' + email + '" không?\nNgười dùng này sẽ được khôi phục quyền truy cập.';
+
+        if (!confirm(message)) {
+          event.preventDefault();
+          return;
+        }
+
+        var submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>Đang xử lý...';
+        }
+      });
+    });
+  })();
+</script>
