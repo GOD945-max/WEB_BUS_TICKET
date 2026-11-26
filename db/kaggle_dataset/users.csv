@@ -1,0 +1,21 @@
+full_name,email,phone,role,is_verified,is_active
+Quản Trị Viên BusTicket,admin@futabus.vn,0901000001,admin,true,true
+Nhân Viên Soát Vé Miền Đông,staff@futabus.vn,0901000002,staff,true,true
+Nhân Viên Điều Hành Đà Lạt,staff.dalat@busticket.vn,0901000003,staff,true,true
+Nhân Viên Soát Vé Mỹ Đình,staff.hanoi@busticket.vn,0901000004,staff,true,true
+Nguyễn Văn Khách,khach1@gmail.com,0912345678,customer,true,true
+Trần Thị Hành Khách,khach2@gmail.com,0987654321,customer,true,true
+Lê Hoàng Nam,le.hoang.nam@gmail.com,0938112233,customer,true,true
+Phạm Minh Anh,pham.minh.anh@gmail.com,0977223344,customer,true,true
+Võ Thanh Tùng,vo.thanh.tung@gmail.com,0909334455,customer,true,true
+Đặng Thu Hà,dang.thu.ha@gmail.com,0918445566,customer,true,true
+Bùi Quốc Bảo,bui.quoc.bao@gmail.com,0983556677,customer,false,true
+Ngô Lan Hương,ngo.lan.huong@gmail.com,0932667788,customer,true,false
+Phạm Thị Mai,mai.pham@gmail.com,0905111222,customer,true,true
+Hoàng Văn Đức,duc.hoang@gmail.com,0905222333,customer,true,true
+Vũ Ngọc Lan,lan.vu@gmail.com,0905333444,customer,true,true
+Đặng Quốc Tuấn,tuan.dang@gmail.com,0905444555,customer,true,true
+Trịnh Gia Huy,huy.trinh@gmail.com,0905555666,customer,true,true
+Lý Thảo Vy,vy.ly@gmail.com,0905666777,customer,true,true
+Phan Anh Khoa,khoa.phan@gmail.com,0905777888,customer,false,true
+Đỗ Khánh Linh,linh.do@gmail.com,0905888999,customer,true,true

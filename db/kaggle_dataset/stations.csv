@@ -1,0 +1,32 @@
+station_id,name,province,address,is_main_station,is_active,source_dataset
+1,Bến xe Miền Đông Mới,TP. Hồ Chí Minh,"501 Hoàng Hữu Nam, TP. Thủ Đức, TP.HCM (OSM 10.7737, 106.7166)",true,true,seatransport/southeast-asia-transport-data
+2,Bến xe Miền Tây,TP. Hồ Chí Minh,"395 Kinh Dương Vương, Bình Tân, TP.HCM (OSM 10.7407, 106.6188)",true,true,seatransport/southeast-asia-transport-data
+3,VP Hàng Xanh,TP. Hồ Chí Minh,"486H Điện Biên Phủ, Bình Thạnh, TP.HCM (OSM 10.8012, 106.7114)",false,true,seatransport/southeast-asia-transport-data
+4,Bến xe Liên tỉnh Đà Lạt,Lâm Đồng,"01 Tô Hiến Thành, Phường 3, TP. Đà Lạt (OSM 11.9402, 108.4376)",true,true,seatransport/southeast-asia-transport-data
+5,VP Bảo Lộc,Lâm Đồng,"280 Trần Phú, TP. Bảo Lộc, Lâm Đồng (OSM 11.5480, 107.8077)",false,true,seatransport/southeast-asia-transport-data
+6,Bến xe Phía Nam Nha Trang,Khánh Hòa,"Km6 Đường 23/10, Vĩnh Trung, Nha Trang (OSM 12.2472, 109.1892)",true,true,seatransport/southeast-asia-transport-data
+7,Bến xe Trung tâm Đà Nẵng,Đà Nẵng,"Tôn Đức Thắng, Hòa Minh, Liên Chiểu, Đà Nẵng (OSM 16.0685, 108.2240)",true,true,seatransport/southeast-asia-transport-data
+8,Bến xe Trung tâm Cần Thơ,Cần Thơ,"QL1A, Hưng Thạnh, Cái Răng, Cần Thơ (OSM 10.0362, 105.7873)",true,true,seatransport/southeast-asia-transport-data
+9,Bến xe Vũng Tàu,Bà Rịa - Vũng Tàu,"192 Nam Kỳ Khởi Nghĩa, Phường 3, TP. Vũng Tàu (OSM 10.3482, 107.0753)",true,true,seatransport/southeast-asia-transport-data
+10,Bến xe Phan Thiết,Bình Thuận,"01 Từ Văn Tư, Phú Thủy, TP. Phan Thiết (OSM 10.9356, 108.2864)",true,true,seatransport/southeast-asia-transport-data
+11,Bến xe Phía Nam Huế,Thừa Thiên Huế,"97 An Dương Vương, Phường An Đông, TP. Huế (OSM 16.4639, 107.5863)",true,true,seatransport/southeast-asia-transport-data
+12,Bến xe Trung tâm Quy Nhơn,Bình Định,"71 Tây Sơn, Phường Ghềnh Ráng, TP. Quy Nhơn (OSM 13.7772, 109.2264)",true,true,seatransport/southeast-asia-transport-data
+13,Bến xe Mỹ Đình,Hà Nội,"20 Phạm Hùng, Mỹ Đình 2, Nam Từ Liêm, Hà Nội (OSM 21.0283, 105.8540)",true,true,seatransport/southeast-asia-transport-data
+14,Bến xe Sa Pa,Lào Cai,"Đường Điện Biên Phủ, Thị xã Sa Pa, Lào Cai (OSM 22.3334, 103.8427)",true,true,seatransport/southeast-asia-transport-data
+15,Bến xe Trung tâm Lào Cai,Lào Cai,"Đại lộ Trần Hưng Đạo, TP. Lào Cai (OSM 22.5004, 103.9656)",true,true,seatransport/southeast-asia-transport-data
+16,Bến xe Hà Giang,Hà Giang,"Đường 19/5, Nguyễn Trãi, TP. Hà Giang (OSM 22.8264, 104.9836)",true,true,seatransport/southeast-asia-transport-data
+17,Bến xe Bãi Cháy (Hạ Long),Quảng Ninh,"279 Đường 279, Bãi Cháy, TP. Hạ Long, Quảng Ninh (OSM 20.9454, 107.1073)",true,true,seatransport/southeast-asia-transport-data
+18,Bến xe Móng Cái,Quảng Ninh,"Đại lộ Hòa Bình, Ka Long, TP. Móng Cái, Quảng Ninh (OSM 21.5298, 107.9680)",true,true,seatransport/southeast-asia-transport-data
+19,Bến xe Vĩnh Niệm (Hải Phòng),Hải Phòng,"15 Bùi Viện, Vĩnh Niệm, Lê Chân, Hải Phòng (OSM 20.8831, 106.6790)",true,true,seatransport/southeast-asia-transport-data
+20,Bến xe Cát Bà,Hải Phòng,"Đường 1/4, Thị trấn Cát Bà, Cát Hải, Hải Phòng (OSM 20.7239, 107.0578)",false,true,seatransport/southeast-asia-transport-data
+21,Bến xe Ninh Bình,Ninh Bình,"207 Lê Đại Hành, Thanh Bình, TP. Ninh Bình (OSM 20.2572, 105.9719)",true,true,seatransport/southeast-asia-transport-data
+22,Trạm xe Phong Nha,Quảng Bình,"Đường Hồ Chí Minh nhánh Đông, Phong Nha, Bố Trạch, Quảng Bình (OSM 17.6119, 106.3053)",false,true,seatransport/southeast-asia-transport-data
+23,Bến xe Đồng Hới,Quảng Bình,"Đường Trần Hưng Đạo, Nam Lý, TP. Đồng Hới, Quảng Bình (OSM 17.4598, 106.6122)",true,true,seatransport/southeast-asia-transport-data
+24,Bến xe Hội An,Quảng Nam,"74 Huỳnh Thúc Kháng, Cẩm Phô, TP. Hội An, Quảng Nam (OSM 15.8796, 108.3319)",true,true,seatransport/southeast-asia-transport-data
+25,Bến xe Bắc Vinh,Nghệ An,"Xóm 1 Nghi Kim, TP. Vinh, Nghệ An (OSM 18.6733, 105.6922)",true,true,seatransport/southeast-asia-transport-data
+26,Bến xe Kon Tum,Kon Tum,"281 Phan Đình Phùng, Quang Trung, TP. Kon Tum (OSM 14.3479, 108.0004)",true,true,seatransport/southeast-asia-transport-data
+27,Bến xe Điện Biên Phủ,Điện Biên,"Tổ 15 Him Lam, TP. Điện Biên Phủ, Điện Biên (OSM 21.3924, 103.0160)",true,true,seatransport/southeast-asia-transport-data
+28,Bến xe Châu Đốc,An Giang,"QL91, Vĩnh Mỹ, TP. Châu Đốc, An Giang (OSM 10.7102, 105.1175)",true,true,seatransport/southeast-asia-transport-data
+29,Bến xe Hà Tiên,Kiên Giang,"QL80, Bình San, TP. Hà Tiên, Kiên Giang (OSM 10.3801, 104.4843)",true,true,seatransport/southeast-asia-transport-data
+30,Bến xe Rạch Giá,Kiên Giang,"260A Nguyễn Bỉnh Khiêm, Vĩnh Thanh, Rạch Giá, Kiên Giang (OSM 10.0107, 105.0833)",true,true,seatransport/southeast-asia-transport-data
+31,Bến xe Dương Đông (Phú Quốc),Kiên Giang,"Đường Cách Mạng Tháng 8, Dương Đông, Phú Quốc, Kiên Giang (OSM 10.2164, 103.9588)",false,true,seatransport/southeast-asia-transport-data

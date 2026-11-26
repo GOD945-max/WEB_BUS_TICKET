@@ -1,0 +1,54 @@
+trip_code,route_id,route_name,bus_id,license_plate,day_offset,departure_hour,offset_hours_from_now,duration_hours,ticket_price,status
+TRIP_KAG_01,1,TP. Hồ Chí Minh - Đà Lạt,1,51B-289.01,,,6,6.5,330000,active
+TRIP_KAG_02,1,TP. Hồ Chí Minh - Đà Lạt,1,51B-289.01,1,21,,6.5,340000,active
+TRIP_KAG_03,2,TP. Hồ Chí Minh - Nha Trang,2,51B-289.02,2,20,,9.0,480000,active
+TRIP_KAG_04,3,TP. Hồ Chí Minh - Cần Thơ,3,51B-340.11,3,15,,3.5,170000,active
+TRIP_KAG_05,4,TP. Hồ Chí Minh - Vũng Tàu,4,51B-340.12,1,15.5,,2.0,90000,active
+TRIP_KAG_06,5,TP. Hồ Chí Minh - Phan Thiết,5,51B-340.15,2,14,,5.0,260000,active
+TRIP_KAG_07,6,Nha Trang - Đà Lạt,7,29B-610.22,3,14.5,,2.5,130000,active
+TRIP_KAG_08,7,TP. Hồ Chí Minh - Hà Tiên,1,51B-289.01,1,21,,7.0,370000,active
+TRIP_KAG_09,8,Hà Nội - Sa Pa,2,51B-289.02,2,20,,7.5,380000,active
+TRIP_KAG_10,9,Lào Cai - Sa Pa,10,43B-556.34,3,15,,1.0,90000,active
+TRIP_KAG_11,10,Hà Nội - Hà Giang,4,51B-340.12,1,21.5,,6.5,290000,active
+TRIP_KAG_12,11,Sa Pa - Hà Giang,12,79B-204.68,2,14,,3.5,180000,active
+TRIP_KAG_13,12,Hà Nội - Hạ Long,1,51B-289.01,3,14.5,,3.5,190000,active
+TRIP_KAG_14,13,Hà Nội - Ninh Bình,2,51B-289.02,1,16.5,,2.5,130000,active
+TRIP_KAG_15,14,Hạ Long - Cát Bà,3,51B-340.11,2,16,,1.0,90000,active
+TRIP_KAG_16,15,Hải Phòng - Cát Bà,4,51B-340.12,3,15,,1.0,90000,active
+TRIP_KAG_17,16,Hà Nội - Phong Nha,4,51B-340.12,1,21.5,,11.0,510000,active
+TRIP_KAG_18,17,Đà Nẵng - Phong Nha,5,51B-340.15,2,20.5,,7.5,400000,active
+TRIP_KAG_19,18,Ninh Bình - Phong Nha,7,29B-610.22,3,22.5,,8.5,450000,active
+TRIP_KAG_20,19,Phong Nha - Huế,9,43B-556.12,1,16.5,,5.5,260000,active
+TRIP_KAG_21,20,Huế - Đà Nẵng,10,43B-556.34,2,16,,2.5,110000,active
+TRIP_KAG_22,21,Đà Nẵng - Hội An,11,65B-088.99,3,15,,1.0,90000,active
+TRIP_KAG_23,22,Đà Nẵng - Quy Nhơn,4,51B-340.12,1,21.5,,8.0,370000,active
+TRIP_KAG_24,23,Đà Nẵng - Đà Lạt,5,51B-340.15,2,20.5,,13.5,690000,active
+TRIP_KAG_25,24,Hạ Long - Móng Cái,2,51B-289.02,3,14.5,,3.0,170000,active
+TRIP_KAG_26,25,Nha Trang - Phan Thiết,3,51B-340.11,1,16.5,,5.0,240000,active
+TRIP_KAG_27,26,Đà Lạt - Phan Thiết,4,51B-340.12,2,16,,3.5,150000,active
+TRIP_KAG_28,27,Đà Lạt - TP. Hồ Chí Minh,3,51B-340.11,3,22,,6.5,300000,active
+TRIP_KAG_29,28,Nha Trang - TP. Hồ Chí Minh,4,51B-340.12,1,21.5,,9.0,430000,active
+TRIP_KAG_30,29,Cần Thơ - TP. Hồ Chí Minh,8,29B-610.36,2,14,,3.5,170000,active
+TRIP_KAG_31,30,Sa Pa - Hà Nội,7,29B-610.22,3,22.5,,7.5,380000,active
+TRIP_KAG_32,31,Đà Nẵng - Huế,10,43B-556.34,1,16.5,,2.5,110000,active
+TRIP_KAG_33,32,Quy Nhơn - Đà Nẵng,2,51B-289.02,2,20,,8.0,410000,active
+TRIP_KAG_34,1,TP. Hồ Chí Minh - Đà Lạt,4,51B-340.12,2,15,,6.5,300000,active
+TRIP_KAG_35,2,TP. Hồ Chí Minh - Nha Trang,5,51B-340.15,3,15.5,,9.0,430000,active
+TRIP_KAG_36,3,TP. Hồ Chí Minh - Cần Thơ,7,29B-610.22,2,14,,3.5,170000,active
+TRIP_KAG_37,4,TP. Hồ Chí Minh - Vũng Tàu,8,29B-610.36,3,14.5,,2.0,90000,active
+TRIP_KAG_38,5,TP. Hồ Chí Minh - Phan Thiết,9,43B-556.12,2,16.5,,5.0,230000,active
+TRIP_KAG_39,6,Nha Trang - Đà Lạt,10,43B-556.34,3,16,,2.5,120000,active
+TRIP_KAG_40,7,TP. Hồ Chí Minh - Hà Tiên,11,65B-088.99,2,15,,7.0,330000,active
+TRIP_KAG_41,8,Hà Nội - Sa Pa,12,79B-204.68,3,15.5,,7.5,340000,active
+TRIP_KAG_42,1,TP. Hồ Chí Minh - Đà Lạt,1,51B-289.01,-1,21,,6.5,320000,completed
+TRIP_KAG_43,2,TP. Hồ Chí Minh - Nha Trang,2,51B-289.02,-2,20,,9.0,450000,completed
+TRIP_KAG_44,3,TP. Hồ Chí Minh - Cần Thơ,3,51B-340.11,-3,22,,3.5,180000,completed
+TRIP_KAG_45,4,TP. Hồ Chí Minh - Vũng Tàu,4,51B-340.12,-4,21.5,,2.0,90000,completed
+TRIP_KAG_46,5,TP. Hồ Chí Minh - Phan Thiết,5,51B-340.15,-5,20.5,,5.0,240000,completed
+TRIP_KAG_47,6,Nha Trang - Đà Lạt,7,29B-610.22,-7,22.5,,2.5,130000,completed
+TRIP_KAG_48,7,TP. Hồ Chí Minh - Hà Tiên,8,29B-610.36,-9,21,,7.0,350000,completed
+TRIP_KAG_49,8,Hà Nội - Sa Pa,9,43B-556.12,-11,20,,7.5,360000,completed
+TRIP_KAG_50,9,Lào Cai - Sa Pa,10,43B-556.34,-13,22,,1.0,90000,completed
+TRIP_KAG_51,10,Hà Nội - Hà Giang,11,65B-088.99,-14,21.5,,6.5,300000,completed
+TRIP_KAG_52,1,TP. Hồ Chí Minh - Đà Lạt,5,51B-340.15,5,19,,6.5,300000,draft
+TRIP_KAG_53,2,TP. Hồ Chí Minh - Nha Trang,4,51B-340.12,4,20,,9.0,430000,cancelled

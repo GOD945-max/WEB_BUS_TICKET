@@ -1,0 +1,71 @@
+route_id,route_name,station_id,station_name,stop_type,offset_minutes,stop_order
+1,TP. Hồ Chí Minh - Đà Lạt,3,VP Hàng Xanh,pickup,-30,1
+1,TP. Hồ Chí Minh - Đà Lạt,1,Bến xe Miền Đông Mới,pickup,0,2
+1,TP. Hồ Chí Minh - Đà Lạt,5,VP Bảo Lộc,dropoff,242,1
+1,TP. Hồ Chí Minh - Đà Lạt,4,Bến xe Liên tỉnh Đà Lạt,dropoff,390,2
+2,TP. Hồ Chí Minh - Nha Trang,3,VP Hàng Xanh,pickup,-30,1
+2,TP. Hồ Chí Minh - Nha Trang,1,Bến xe Miền Đông Mới,pickup,0,2
+2,TP. Hồ Chí Minh - Nha Trang,10,Bến xe Phan Thiết,dropoff,227,1
+2,TP. Hồ Chí Minh - Nha Trang,6,Bến xe Phía Nam Nha Trang,dropoff,540,2
+3,TP. Hồ Chí Minh - Cần Thơ,2,Bến xe Miền Tây,pickup,0,1
+3,TP. Hồ Chí Minh - Cần Thơ,8,Bến xe Trung tâm Cần Thơ,dropoff,210,1
+4,TP. Hồ Chí Minh - Vũng Tàu,3,VP Hàng Xanh,pickup,-30,1
+4,TP. Hồ Chí Minh - Vũng Tàu,1,Bến xe Miền Đông Mới,pickup,0,2
+4,TP. Hồ Chí Minh - Vũng Tàu,9,Bến xe Vũng Tàu,dropoff,120,1
+5,TP. Hồ Chí Minh - Phan Thiết,3,VP Hàng Xanh,pickup,-30,1
+5,TP. Hồ Chí Minh - Phan Thiết,1,Bến xe Miền Đông Mới,pickup,0,2
+5,TP. Hồ Chí Minh - Phan Thiết,10,Bến xe Phan Thiết,dropoff,300,1
+6,Nha Trang - Đà Lạt,6,Bến xe Phía Nam Nha Trang,pickup,0,1
+6,Nha Trang - Đà Lạt,4,Bến xe Liên tỉnh Đà Lạt,dropoff,150,1
+7,TP. Hồ Chí Minh - Hà Tiên,2,Bến xe Miền Tây,pickup,0,1
+7,TP. Hồ Chí Minh - Hà Tiên,29,Bến xe Hà Tiên,dropoff,420,1
+8,Hà Nội - Sa Pa,13,Bến xe Mỹ Đình,pickup,0,1
+8,Hà Nội - Sa Pa,14,Bến xe Sa Pa,dropoff,450,1
+9,Lào Cai - Sa Pa,15,Bến xe Trung tâm Lào Cai,pickup,0,1
+9,Lào Cai - Sa Pa,14,Bến xe Sa Pa,dropoff,60,1
+10,Hà Nội - Hà Giang,13,Bến xe Mỹ Đình,pickup,0,1
+10,Hà Nội - Hà Giang,16,Bến xe Hà Giang,dropoff,390,1
+11,Sa Pa - Hà Giang,14,Bến xe Sa Pa,pickup,0,1
+11,Sa Pa - Hà Giang,16,Bến xe Hà Giang,dropoff,210,1
+12,Hà Nội - Hạ Long,13,Bến xe Mỹ Đình,pickup,0,1
+12,Hà Nội - Hạ Long,17,Bến xe Bãi Cháy (Hạ Long),dropoff,210,1
+13,Hà Nội - Ninh Bình,13,Bến xe Mỹ Đình,pickup,0,1
+13,Hà Nội - Ninh Bình,21,Bến xe Ninh Bình,dropoff,150,1
+14,Hạ Long - Cát Bà,17,Bến xe Bãi Cháy (Hạ Long),pickup,0,1
+14,Hạ Long - Cát Bà,20,Bến xe Cát Bà,dropoff,60,1
+15,Hải Phòng - Cát Bà,19,Bến xe Vĩnh Niệm (Hải Phòng),pickup,0,1
+15,Hải Phòng - Cát Bà,20,Bến xe Cát Bà,dropoff,60,1
+16,Hà Nội - Phong Nha,13,Bến xe Mỹ Đình,pickup,0,1
+16,Hà Nội - Phong Nha,22,Trạm xe Phong Nha,dropoff,660,1
+17,Đà Nẵng - Phong Nha,7,Bến xe Trung tâm Đà Nẵng,pickup,0,1
+17,Đà Nẵng - Phong Nha,22,Trạm xe Phong Nha,dropoff,450,1
+18,Ninh Bình - Phong Nha,21,Bến xe Ninh Bình,pickup,0,1
+18,Ninh Bình - Phong Nha,22,Trạm xe Phong Nha,dropoff,510,1
+19,Phong Nha - Huế,22,Trạm xe Phong Nha,pickup,0,1
+19,Phong Nha - Huế,11,Bến xe Phía Nam Huế,dropoff,330,1
+20,Huế - Đà Nẵng,11,Bến xe Phía Nam Huế,pickup,0,1
+20,Huế - Đà Nẵng,7,Bến xe Trung tâm Đà Nẵng,dropoff,150,1
+21,Đà Nẵng - Hội An,7,Bến xe Trung tâm Đà Nẵng,pickup,0,1
+21,Đà Nẵng - Hội An,24,Bến xe Hội An,dropoff,60,1
+22,Đà Nẵng - Quy Nhơn,7,Bến xe Trung tâm Đà Nẵng,pickup,0,1
+22,Đà Nẵng - Quy Nhơn,12,Bến xe Trung tâm Quy Nhơn,dropoff,480,1
+23,Đà Nẵng - Đà Lạt,7,Bến xe Trung tâm Đà Nẵng,pickup,0,1
+23,Đà Nẵng - Đà Lạt,4,Bến xe Liên tỉnh Đà Lạt,dropoff,810,1
+24,Hạ Long - Móng Cái,17,Bến xe Bãi Cháy (Hạ Long),pickup,0,1
+24,Hạ Long - Móng Cái,18,Bến xe Móng Cái,dropoff,180,1
+25,Nha Trang - Phan Thiết,6,Bến xe Phía Nam Nha Trang,pickup,0,1
+25,Nha Trang - Phan Thiết,10,Bến xe Phan Thiết,dropoff,300,1
+26,Đà Lạt - Phan Thiết,4,Bến xe Liên tỉnh Đà Lạt,pickup,0,1
+26,Đà Lạt - Phan Thiết,10,Bến xe Phan Thiết,dropoff,210,1
+27,Đà Lạt - TP. Hồ Chí Minh,4,Bến xe Liên tỉnh Đà Lạt,pickup,0,1
+27,Đà Lạt - TP. Hồ Chí Minh,1,Bến xe Miền Đông Mới,dropoff,390,1
+28,Nha Trang - TP. Hồ Chí Minh,6,Bến xe Phía Nam Nha Trang,pickup,0,1
+28,Nha Trang - TP. Hồ Chí Minh,1,Bến xe Miền Đông Mới,dropoff,540,1
+29,Cần Thơ - TP. Hồ Chí Minh,8,Bến xe Trung tâm Cần Thơ,pickup,0,1
+29,Cần Thơ - TP. Hồ Chí Minh,1,Bến xe Miền Đông Mới,dropoff,210,1
+30,Sa Pa - Hà Nội,14,Bến xe Sa Pa,pickup,0,1
+30,Sa Pa - Hà Nội,13,Bến xe Mỹ Đình,dropoff,450,1
+31,Đà Nẵng - Huế,7,Bến xe Trung tâm Đà Nẵng,pickup,0,1
+31,Đà Nẵng - Huế,11,Bến xe Phía Nam Huế,dropoff,150,1
+32,Quy Nhơn - Đà Nẵng,12,Bến xe Trung tâm Quy Nhơn,pickup,0,1
+32,Quy Nhơn - Đà Nẵng,7,Bến xe Trung tâm Đà Nẵng,dropoff,480,1
