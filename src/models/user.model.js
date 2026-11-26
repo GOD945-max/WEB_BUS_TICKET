@@ -183,7 +183,7 @@ const UserModel = {
       SET password_hash = $2,
           reset_token = NULL,
           is_verified = TRUE
-      WHERE reset_token = $1 AND reset_token IS NOT NULL
+      WHERE reset_token = $1 AND reset_token IS NOT NULL AND is_active = TRUE
       RETURNING id, full_name, email, phone, role, is_verified, is_active
     `;
     const { rows } = await db.query(sql, [token.trim(), newPasswordHash]);
