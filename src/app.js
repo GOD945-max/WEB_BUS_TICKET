@@ -12,6 +12,7 @@ const BookingController = require('./controllers/booking.controller');
 const StaffReportController = require('./controllers/staff-report.controller');
 const ChatbotController = require('./controllers/chatbot.controller');
 const BookingModel = require('./models/booking.model');
+const { checkAccountActive, requireRole } = require('./middlewares/auth.middleware');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -33,18 +34,12 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  res.locals.currentUser = req.session.user || null;
-  next();
-});
+app.use(checkAccountActive);
 
 // === NHÓM 1 (TV1): TÀI KHOẢN, XÁC THỰC & BẢO MẬT ===
-app.get('/auth/login', AuthController.renderLogin);
-app.get('/auth/register', AuthController.renderRegister);
-app.get('/auth/forgot-password', AuthController.renderForgotPassword);
-app.get('/auth/profile', AuthController.renderProfile);
-app.get('/auth/booking-history', AuthController.renderBookingHistory);
-app.get('/admin/users', AuthController.listUsersAdmin);
+app.use('/', AuthController.router);
+app.use('/admin', requireRole('admin'));
+app.use('/staff', requireRole('staff', 'admin'));
 
 // === NHÓM 2 (TV2): DANH MỤC VẬN HÀNH, NỘI DUNG & TRANG TĨNH TAILWIND ===
 app.get('/gioi-thieu', (req, res) => res.render('static-tailwind/about', { title: 'Giới thiệu nhà xe' }));
