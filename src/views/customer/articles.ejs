@@ -1,6 +1,1 @@
-<!-- [TV2 - Nhóm 2] Giao diện Khách hàng xem Tin tức & Khuyến mãi -->
-<%- include('../layouts/customer-header') %>
-<div class="container py-4">
-  <h2 class="h4 text-primary">Tin tức & Khuyến mãi</h2>
-</div>
-<%- include('../layouts/customer-footer') %>
+<%- include('../layouts/customer-header') %><main class="container py-4"><h1><%= title %></h1><% articles.forEach(a=>{ %><article class="card my-3 p-3"><h2 class="h5"><a href="/tin-tuc/<%= encodeURIComponent(a.slug) %>"><%= a.title %></a></h2><p><%= a.summary || '' %></p><% if(detail){ %><p style="white-space:pre-wrap"><%= a.content %></p><% } %></article><% }) %><% if(!articles.length){ %><p>Chưa có bài viết.</p><% } %></main><%- include('../layouts/customer-footer') %>

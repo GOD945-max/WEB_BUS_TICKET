@@ -1,15 +1,13 @@
-<!-- [TV2 - Nhóm 2: Danh mục vận hành và nội dung] Giao diện quản trị chung (Bootstrap 5) -->
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= typeof title !== 'undefined' ? title : 'Quản trị Hệ thống Nhà xe' %></title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-</head>
-<body class="bg-light">
-  <div class="container py-4">
-    <h1 class="h4 text-primary"><%= typeof title !== 'undefined' ? title : 'Trang Quản Trị' %></h1>
-  </div>
-</body>
-</html>
+<% const partial = typeof navigationOnly !== 'undefined' && navigationOnly; %>
+<% if (!partial) { %>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><%= typeof title !== 'undefined' ? title : 'Quản trị' %></title><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"></head><body class="bg-light"><nav class="navbar navbar-dark bg-primary px-3"><a class="navbar-brand" href="/admin/dashboard">Quản trị nhà xe</a><a class="text-white" href="/">Trang chủ</a></nav><div class="container-fluid"><div class="row"><aside class="col-md-3 col-lg-2 p-3 bg-white">
+<% } %>
+<nav class="nav flex-column" aria-label="Điều hướng quản trị">
+  <% [['/admin/dashboard','Dashboard'],['/admin/stations','Bến xe'],['/admin/routes','Tuyến xe'],['/admin/seat-layouts','Sơ đồ ghế'],['/admin/buses','Đội xe'],['/admin/trips','Chuyến xe'],['/admin/bookings','Đặt chỗ'],['/admin/articles','Bài viết'],['/admin/users','Người dùng'],['/staff/checkin','Soát vé']].forEach(([href,label]) => { %>
+    <a class="nav-link" href="<%= href %>"><%= label %></a>
+  <% }) %>
+  <form action="/auth/logout" method="post"><button class="btn btn-outline-secondary btn-sm ms-3">Đăng xuất</button></form>
+</nav>
+<% if (!partial) { %>
+</aside><main class="col-md-9 col-lg-10 p-4"><h1 class="h4"><%= typeof title !== 'undefined' ? title : 'Quản trị' %></h1></main></div></div></body></html>
+<% } %>

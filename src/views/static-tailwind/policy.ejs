@@ -1,16 +1,1 @@
-<!-- [TV2 - Nhóm 2: Danh mục vận hành và nội dung] Trang tĩnh Chính sách hoàn/hủy vé sử dụng TAILWIND CSS -->
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= title %></title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-slate-50 text-slate-800">
-  <div class="max-w-4xl mx-auto py-12 px-4">
-    <h1 class="text-3xl font-bold text-blue-900 mb-4">Chính Sách Hoàn & Hủy Vé</h1>
-    <p class="text-lg text-slate-600">Hỗ trợ hủy vé trước 24 giờ khởi hành và hoàn tiền 100% nếu nhà xe hủy chuyến.</p>
-  </div>
-</body>
-</html>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><%= title %></title><script src="https://cdn.tailwindcss.com"></script></head><body class="bg-slate-50 text-slate-800"><main class="max-w-5xl mx-auto p-6"><a href="/" class="text-blue-700">Trang chủ</a><h1 class="text-3xl font-bold my-6">Chính sách hoàn & hủy vé</h1><p class="rounded-2xl bg-white p-5 shadow-md">Hủy vé cá nhân trước ít nhất 24 giờ. Nhà xe hủy chuyến: hoàn 100% cho đơn đã thanh toán; đơn chưa thanh toán được hoàn 0.</p><% articles.forEach(a=>{ %><article class="rounded-2xl bg-white p-5 shadow-md mt-4"><h2 class="text-xl font-bold"><%= a.title %></h2><p class="whitespace-pre-wrap mt-2"><%= a.content %></p></article><% }) %></main></body></html>

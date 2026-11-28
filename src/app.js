@@ -12,6 +12,7 @@ const BookingController = require('./controllers/booking.controller');
 const StaffReportController = require('./controllers/staff-report.controller');
 const ChatbotController = require('./controllers/chatbot.controller');
 const BookingModel = require('./models/booking.model');
+const { checkAccountActive, requireRole } = require('./middlewares/auth.middleware');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -33,29 +34,25 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  res.locals.currentUser = req.session.user || null;
-  next();
-});
+app.use(checkAccountActive);
 
 // === NHÓM 1 (TV1): TÀI KHOẢN, XÁC THỰC & BẢO MẬT ===
-app.get('/auth/login', AuthController.renderLogin);
-app.get('/auth/register', AuthController.renderRegister);
-app.get('/auth/forgot-password', AuthController.renderForgotPassword);
-app.get('/auth/profile', AuthController.renderProfile);
-app.get('/auth/booking-history', AuthController.renderBookingHistory);
-app.get('/admin/users', AuthController.listUsersAdmin);
+app.use('/', AuthController.router);
+app.use('/admin', requireRole('admin'));
+app.use('/staff', requireRole('staff', 'admin'));
 
 // === NHÓM 2 (TV2): DANH MỤC VẬN HÀNH, NỘI DUNG & TRANG TĨNH TAILWIND ===
-app.get('/gioi-thieu', (req, res) => res.render('static-tailwind/about', { title: 'Giới thiệu nhà xe' }));
-app.get('/chinh-sach', (req, res) => res.render('static-tailwind/policy', { title: 'Chính sách hoàn/hủy vé' }));
-app.get('/faq', (req, res) => res.render('static-tailwind/faq', { title: 'Câu hỏi thường gặp (FAQ)' }));
-app.get('/tin-tuc', AdminCatalogController.renderCustomerArticles);
-app.get('/admin/stations', AdminCatalogController.listStations);
-app.get('/admin/routes', AdminCatalogController.listRoutes);
-app.get('/admin/seat-layouts', AdminCatalogController.listSeatLayouts);
-app.get('/admin/buses', AdminCatalogController.listBuses);
-app.get('/admin/articles', AdminCatalogController.listArticlesAdmin);
+app.get(['/gioi-thieu', '/chinh-sach', '/faq'], AdminCatalogController.staticPage);
+app.get(['/tin-tuc', '/tin-tuc/:slug'], AdminCatalogController.news);
+for (const kind of ['stations', 'routes', 'seat-layouts', 'buses', 'articles']) {
+  const router = express.Router();
+  router.get('/', AdminCatalogController.list);
+  router.post('/', AdminCatalogController.save);
+  router.post('/:id', AdminCatalogController.save);
+  if (['stations', 'routes'].includes(kind)) router.post('/:id/toggle', AdminCatalogController.toggle);
+  if (['seat-layouts', 'articles'].includes(kind)) router.post('/:id/delete', AdminCatalogController.remove);
+  app.use(`/admin/${kind}`, router);
+}
 
 // === NHÓM 3 (TV3): LỊCH CHẠY & TÌM KIẾM CHUYẾN ===
 app.get('/', CustomerTripController.renderHome);
